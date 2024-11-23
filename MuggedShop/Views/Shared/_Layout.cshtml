@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MuggedShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            background-color: white;
+        }
+
+        h1 {
+            letter-spacing: 1.5px;
+            color: black;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .topnav {
+            width: 100%;
+            background-image: linear-gradient(#f88f5f, #fed59c);
+            overflow: auto;
+        }
+
+        .topnav a {
+            float: left;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+            font-size: 17px;
+            text-align: center;
+            width: 16.66666666666667%;
+        }
+
+        .topnav a:hover {
+            background-color: #d753a7;
+            color: white;
+        }
+
+        .topnav a.icon {
+            float: right;
+            display: none;
+            font-size: 20px;
+            padding: 10px;
+            color: black;
+            width: auto;
+        }
+
+        .topnav a.icon:hover {
+            color: white;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15%;
+        }
+
+        footer {
+            background-image: linear-gradient(#f7905f, #fed59c);
+            color: black;
+            padding-top: 50px;
+            text-align: center;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @@media screen and (max-width: 600px) {
+            .topnav a {
+                display: none;
+            }
+            .topnav a.icon {
+                display: block;
+            }
+            .topnav a:first-child {
+                display: block;
+                float: left;
+                width: auto;
+            }
+            .topnav.responsive {
+                position: relative;
+            }
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: auto;
+            }
+            .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+            }
+            .topnav.responsive a:hover:not(.icon) {
+                background-color: #e588c7;
+                color: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    @if (!(ViewBag.HideNav ?? false))
+    {
+        <header>
+            <div class="logo-container">
+                <img src="~/images/Mugged_Logo.jpg" alt="Logo" class="logo">
+            </div>
+
+            <nav class="topnav @(ViewBag.HideNavBar ?? false ? "navbar-hidden" : "")" id="myTopnav">
+                <a asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a asp-controller="Home" asp-action="AboutUs">
+                    <i class="fas fa-info-circle"></i> About Us
+                </a>
+                <a asp-controller="Home" asp-action="Shop">
+                    <i class="fas fa-box-open"></i> Shop
+                </a>
+                <a asp-controller="Home" asp-action="ContactUs">
+                    <i class="fas fa-envelope"></i> Contact Us
+                </a>
+                <a asp-controller="Home" asp-action="Cart">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    @if (ViewBag.CartCount > 0)
+                    {
+                        <span class="badge bg-danger">@ViewBag.CartCount</span>
+                    }
+                </a>
+                <a asp-controller="Login" asp-action="Login">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </nav>
+        </header>
+    }
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @if (!(ViewBag.HideFooter ?? false))
+    {
+        <!-- Inserted Footer Section -->
+        <footer style="color:black">
+            <div class="container" style="color:black">
+                <p style="margin: 0;">&copy; 2024. Mugged. All rights reserved.</p>
+            </div>
+        </footer>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,213 @@
+﻿@model IEnumerable<MuggedShop.Models.Category>
+
+@{
+    ViewData["Title"] = "ViewCategory";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    th {
+        background-color: #f88f5f;
+        color: black;
+    }
+
+    td, th {
+        width: 33%;
+    }
+
+    .custom-button {
+        margin-bottom: 10px;
+    }
+
+    .custom-link {
+        padding: 8px 16px;
+        background-color: #d753a7;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+        .custom-link:hover {
+            background-color: #ef674d;
+            color: white;
+        }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .custom-action-button {
+        padding: 5px 10px;
+        background-color: #d753a7;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+    }
+
+        .custom-action-button:hover {
+            background-color: #ef674d;
+            color: white;
+        }
+
+    @@media screen and (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+            width: 100%;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .action-buttons {
+            flex-wrap: wrap;
+        }
+
+        .custom-action-button {
+            flex-grow: 1;
+            margin: 5px 0;
+        }
+    }
+
+    .search-container {
+        display: flex;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-right: 10px;
+        width: 80%;
+    }
+
+    .search-button, .clear-button {
+        padding: 8px 16px;
+        background-color: #d753a7;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-left: 5px;
+    }
+
+        .search-button:hover, .clear-button:hover {
+            background-color: #ef674d;
+        }
+
+    .clear-button {
+        background: #d753a7;
+        color: white;
+        text-decoration: none;
+        border: none;
+    }
+
+        .clear-button:hover {
+            color: #ef674d;
+        }
+</style>
+
+<h1>View Category</h1>
+
+<div class="custom-button">
+    <a class="custom-link" asp-action="AddCategory">CREATE NEW</a>
+</div>
+
+<div>
+    <form method="get" action="@Url.Action("ViewCategory")" class="search-container">
+        <input type="text" name="searchTerm" placeholder="Search by Category Name" class="search-input" />
+        <button type="submit" class="search-button">Search</button>
+        <a href="@Url.Action("ViewCategory")" class="clear-button">Clear</a>
+    </form>
+</div>
+
+<!-- Wrap table in responsive container -->
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a class="custom-action-button" asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a>
+                                <a class="custom-action-button" asp-action="DetailsCategory" asp-route-id="@item.CategoryId">Details</a>
+                                <a class="custom-action-button" asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">No categories available</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+<br />
+<br />
+<br />

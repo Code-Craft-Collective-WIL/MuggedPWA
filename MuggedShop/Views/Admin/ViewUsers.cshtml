@@ -1,0 +1,164 @@
+﻿@model IEnumerable<MuggedShop.Models.User> // Assuming User model is defined in Models namespace
+
+@{
+    ViewData["Title"] = "View Users";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        width: 25%;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    th {
+        background-color: #f88f5f;
+        color: black;
+    }
+
+    .custom-button {
+        margin-bottom: 10px;
+    }
+
+    .custom-link {
+        padding: 8px 16px;
+        background-color: #d753a7;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+        .custom-link:hover {
+            background-color: #ef674d;
+            color: white;
+        }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .custom-action-button {
+        padding: 5px 10px;
+        background-color: #d753a7;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+    }
+
+        .custom-action-button:hover {
+            background-color: #ef674d;
+            color: white;
+        }
+
+    @@media screen and (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+            width: 100%;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .action-buttons {
+            flex-wrap: wrap;
+        }
+
+        .custom-action-button {
+            flex-grow: 1;
+            margin: 5px 0;
+        }
+    }
+</style>
+
+<h1>View Users</h1>
+
+<div class="custom-button">
+    <a class="custom-link" asp-action="AddUser">CREATE NEW</a> <!-- Link to create a new user -->
+</div>
+
+<!-- Wrap table in responsive container -->
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Email)</th>
+                <th>@Html.DisplayNameFor(model => model.First().FullName)</th>
+                <th>@Html.DisplayNameFor(model => model.First().PhoneNumber)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => user.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => user.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => user.PhoneNumber)</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a class="custom-action-button" asp-action="EditUser" asp-route-email="@user.Email">Edit</a>
+                                <a class="custom-action-button" asp-action="DetailsUser" asp-route-email="@user.Email">Details</a>
+                                <a class="custom-action-button" asp-action="DeleteUser" asp-route-email="@user.Email">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No user accounts available</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+<br />
+<br />
+<br />

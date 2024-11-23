@@ -1,0 +1,92 @@
+﻿@model MuggedShop.Models.Category
+
+@{
+    ViewData["Title"] = "Details Category";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    th {
+        background-color: #f88f5f;
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        border-top: 2px solid #d753a7;
+        border-bottom: 2px solid #d753a7;
+    }
+
+    .bold-label {
+        font-weight: bold;
+    }
+
+    .button-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .custom-button {
+        margin: 0 10px;
+    }
+
+    .custom-link {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        font-weight: bold;
+    }
+
+        .custom-link:hover {
+            background-color: #003366;
+        }
+</style>
+
+<br />
+<h1>Category Details</h1>
+
+<div>
+    <table>
+        <tr>
+            <th class="bold-label">@Html.DisplayNameFor(model => model.CategoryName)</th>
+            <td>@Html.DisplayFor(model => model.CategoryName)</td>
+        </tr>
+        <tr>
+            <th class="bold-label">@Html.DisplayNameFor(model => model.Description)</th>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+    </table>
+</div>
+
+<br />
+
+<div class="button-container">
+    <div class="custom-button">
+        <a class="custom-link" asp-action="ViewCategory" style="font-weight: bold; background-color: #6c757d; color: white;">Back to Categories</a>
+    </div>
+    <div class="custom-button">
+        <a class="custom-link" asp-action="EditCategory" asp-route-id="@Model?.CategoryId" style="background-color: #d753a7; color: white; font-weight: bold; border: none; padding: 10px 20px; cursor: pointer;"
+           onmouseover="this.style.backgroundColor='#ef674d'"
+           onmouseout="this.style.backgroundColor='#d753a7'">EDIT</a>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />

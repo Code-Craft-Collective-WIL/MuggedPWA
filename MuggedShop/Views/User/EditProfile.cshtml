@@ -1,0 +1,70 @@
+﻿@model MuggedShop.Models.User
+
+@{
+    ViewData["Title"] = "Edit Profile Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1>Edit Profile</h1>
+
+<div class="custom-form">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div id="successMessage" class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form asp-action="EditProfile" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="FullName" class="control-label"></label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" readonly />
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <input type="submit" value="Update Profile" class="btn btn-primary" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'" />
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <a asp-action="UserHome" class="btn btn-secondary" style="font-weight:bold;">Cancel</a>
+        </div>
+
+        <br /><br /><br /><br />
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Show the success message for 3 seconds
+        window.addEventListener("DOMContentLoaded", () => {
+            const successMessage = document.getElementById("successMessage");
+            if (successMessage) {
+                setTimeout(() => {
+                    successMessage.style.display = "block";
+                    setTimeout(() => {
+                        window.location.href = "@Url.Action("UserHome", "User")";
+                    }, 3000);
+                }, 0);
+            }
+        });
+    </script>
+}

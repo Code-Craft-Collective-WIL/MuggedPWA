@@ -1,0 +1,263 @@
+﻿@model IEnumerable<MuggedShop.Models.OrderHistoryViewModel>
+
+@{
+    ViewData["Title"] = "Order History Page";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        width: 20%;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    th {
+        background-color: #f88f5f;
+        color: black;
+    }
+
+    .custom-action-button {
+        padding: 5px 10px;
+        background-color: #d753a7;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+    }
+
+    .custom-action-button:hover {
+        background-color: #ef674d;
+        color: white;
+    }
+
+    .process-action-button {
+        padding: 5px 10px;
+        background-color: #4CAF50; /* Green color for "Process Order" */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .process-action-button:hover {
+        background-color: #45a049;
+    }
+
+        .process-action-button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            color: #666;
+        }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem; /* Space between buttons */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filter-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @@media screen and (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+            width: 100%;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+    }
+</style>
+
+<h1>All Orders</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successMessage" class="alert alert-success text-center">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="alert alert-danger text-center">@TempData["ErrorMessage"]</div>
+}
+
+<form method="get" asp-action="ExportToPdf" asp-controller="Admin" class="mb-3">
+    <input type="hidden" name="startDate" value="@(ViewBag.StartDate ?? "")" />
+    <input type="hidden" name="endDate" value="@(ViewBag.EndDate ?? "")" />
+    <input type="hidden" name="status" value="@(ViewBag.Status ?? "Pending")" />
+
+    <button type="submit" class="custom-action-button">Export to PDF</button>
+</form>
+
+<form method="get" class="mb-3 filter-form">
+    <!-- Order Status Filter -->
+    <div class="form-group">
+        <label for="status">Order Status</label>
+        <select class="form-control" id="status" name="status" onchange="this.form.submit()">
+            <option value="Pending" selected="@(ViewBag.Status == "Pending" ? "selected" : null)">Unprocessed</option>
+            <option value="Processed" selected="@(ViewBag.Status == "Processed" ? "selected" : null)">Processed</option>
+        </select>
+    </div>
+
+    <!-- Date Range Filter -->
+    <div class="form-group">
+        <label for="startDate">Start Date (yyyy/mm/dd)</label>
+        <input type="date" class="form-control" id="startDate" name="startDate" value="@(ViewBag.StartDate ?? "")" />
+    </div>
+    <div class="form-group">
+        <label for="endDate">End Date (yyyy/mm/dd)</label>
+        <input type="date" class="form-control" id="endDate" name="endDate" value="@(ViewBag.EndDate ?? "")" />
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="form-group">
+        <label>&nbsp;</label>
+        <div style="display: flex; gap: 0.5rem;">
+            <button type="submit" class="custom-action-button">Filter</button>
+            <a asp-action="OrderHistory" class="custom-action-button">Reset Filter</a>
+        </div>
+    </div>
+</form>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>User Email</th>
+                <th>Total Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@(order.CreatedAt.HasValue ? order.CreatedAt.Value.ToString("MM/dd/yyyy") : "")</td>
+                        <td>@order.Email</td>
+                        <td>@order.TotalAmount.ToString("C")</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a asp-action="ViewOrder" asp-route-id="@order.OrderId" class="custom-action-button">
+                                    View Order
+                                </a>
+                                <form asp-action="ProcessOrder" asp-route-id="@order.OrderId" method="post" style="display:inline;"
+                                      onsubmit="return confirm('Are you sure you want to mark this order as processed?');">
+                                    <button type="submit" class="process-action-button @(order.Status == "Processed" ? "disabled" : "")" @(order.Status == "Processed" ? "disabled" : "")>Process Order</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No orders found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Function to get URL query parameters(Troeslen & Japikse, 2021)
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // On page load, set the status dropdown and date input fields to the value from the query string(Troeslen & Japikse, 2021)
+    window.onload = function() {
+        // Set the status dropdown(Troeslen & Japikse, 2021)
+        var statusParam = getQueryParam('status');
+        if (statusParam) {
+            var statusSelect = document.getElementById('status');
+            for (var i = 0; i < statusSelect.options.length; i++) {
+                if (statusSelect.options[i].value === statusParam) {
+                    statusSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        // Set the start date(Troeslen & Japikse, 2021)
+        var startDateParam = getQueryParam('startDate');
+        if (startDateParam) {
+            document.getElementById('startDate').value = startDateParam;
+        }
+
+        // Set the end date(Troeslen & Japikse, 2021)
+        var endDateParam = getQueryParam('endDate');
+        if (endDateParam) {
+            document.getElementById('endDate').value = endDateParam;
+        }
+    }
+
+    // JavaScript to hide the success message after 3 seconds(Troeslen & Japikse, 2021)
+    window.onload = function () {
+        setTimeout(function () {
+            var successMessage = document.getElementById("successMessage");
+            if (successMessage) {
+                successMessage.style.display = "none";
+            }
+            var errorMessage = document.getElementById("errorMessage");
+            if (errorMessage) {
+                errorMessage.style.display = "none";
+            }
+        }, 3000); // 3000 milliseconds = 3 seconds(Troeslen & Japikse, 2021)
+    };
+</script>

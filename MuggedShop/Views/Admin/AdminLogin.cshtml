@@ -1,0 +1,206 @@
+﻿@model MuggedShop.Models.AdminUser
+
+@{
+    ViewData["Title"] = "Admin Login";
+    ViewBag.HideNav = true;
+    ViewBag.HideFooter = true;
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, #f88f5f, #fed59c, #d753a7, #e98dcc);
+        padding: 0 10px;
+    }
+
+    .login_form {
+        width: 100%;
+        max-width: 435px;
+        background: #e6f0ff;
+        border-radius: 6px;
+        padding: 41px 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        margin: 0 auto;
+    }
+
+        .login_form h3 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login_form .login_option {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .login_form .login_option .option {
+                width: calc(50% - 12px);
+            }
+
+                .login_form .login_option .option a {
+                    height: 56px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 12px;
+                    background: #F8F8FB;
+                    border: 1px solid #DADAF2;
+                    border-radius: 5px;
+                    margin: 34px 0 24px 0;
+                    text-decoration: none;
+                    color: #171645;
+                    font-weight: 500;
+                    transition: 0.2s ease;
+                }
+
+                    .login_form .login_option .option a:hover {
+                        background: #ededf5;
+                        border-color: #626cd6;
+                    }
+
+                    .login_form .login_option .option a img {
+                        max-width: 25px;
+                    }
+
+        .login_form p {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .login_form .separator {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+            .login_form .separator span {
+                background: #fff;
+                z-index: 1;
+                padding: 0 10px;
+                position: relative;
+            }
+
+            .login_form .separator::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                left: 0;
+                height: 1px;
+                background: #C2C2C2;
+                display: block;
+            }
+
+    form .input_box label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    form .input_box input {
+        width: 100%;
+        height: 57px;
+        border: 1px solid #DADAF2;
+        border-radius: 5px;
+        outline: none;
+        background: #F8F8FB;
+        font-size: 17px;
+        padding: 0px 20px;
+        margin-bottom: 25px;
+        transition: 0.2s ease;
+    }
+
+        form .input_box input:focus {
+            border-color: #626cd6;
+        }
+
+    form .input_box .password_title {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    form .input_box {
+        position: relative;
+    }
+
+    a {
+        text-decoration: none;
+        color: #626cd6;
+        font-weight: 500;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+    form button {
+        width: 100%;
+        height: 56px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background: #004aad;
+        color: #e6f0ff;
+        font-size: 18px;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-bottom: 28px;
+        transition: 0.3s ease;
+    }
+
+        form button:hover {
+            background: #08075F;
+        }
+
+    .alert {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="login_form">
+    <h3>Login</h3>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="AdminLogin" method="post">
+        <div class="input_box">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+        </div>
+        <div class="input_box">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
+        </div>
+        <button type="submit" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'">LOGIN</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

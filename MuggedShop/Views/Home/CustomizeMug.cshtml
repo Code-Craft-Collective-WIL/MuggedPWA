@@ -1,0 +1,68 @@
+﻿@model MuggedShop.Models.CustomOrder
+
+@{
+    ViewData["Title"] = "Customize Your Mug";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Customize Your Mug</h1>
+
+<div class="custom-form">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    <form asp-action="AddCustomOrder" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group mb-3">
+            <label for="CustomImageUrl" class="control-label">Upload Image</label>
+            <input type="file" class="form-control" id="CustomImageUrl" name="CustomImageUrl" accept="image/*" required onchange="showImagePreview(event)" />
+            <span asp-validation-for="CustomImageUrl" class="text-danger"></span>
+        </div>
+
+        <!-- Image preview area with a default image -->
+        <div class="mb-3 text-center">
+            <img id="imagePreview" src="/images/default-mug.png" alt="Image Preview" style="max-width: 100%; max-height: 300px; margin-top: 10px; border: 1px solid #ddd; padding: 10px; display: inline-block;" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="CustomText" class="control-label">Custom Text</label>
+            <input type="text" class="form-control" id="CustomText" name="CustomText" required />
+            <span asp-validation-for="CustomText" class="text-danger"></span>
+        </div>
+
+        <br />
+
+        <div class="form-group mb-3">
+            <label for="Quantity" class="control-label">Quantity</label>
+            <input type="number" class="form-control" id="Quantity" name="Quantity" value="1" min="1" required />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+
+        <br />
+
+        <div class="form-group text-center">
+            <!-- Center the button -->
+            <button type="submit" class="btn btn-primary" style="width: 100%; color: white; background-color: #d753a7; font-weight: bold; border: none; padding: 10px 0; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'">
+                Add to Cart
+            </button>
+        </div>
+
+        <br /><br />
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function showImagePreview(event) {
+            const image = document.getElementById('imagePreview');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+}

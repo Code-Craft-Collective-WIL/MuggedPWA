@@ -1,0 +1,333 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MuggedShop.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MuggedShop.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\4m5kfzfx.sne.jpg",
+      "PackagePath": "staticwebassets\\Images\\4m5kfzfx.sne.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\53b5dtje.5f2.jpg",
+      "PackagePath": "staticwebassets\\Images\\53b5dtje.5f2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\Custom_Mug.jpg",
+      "PackagePath": "staticwebassets\\Images\\Custom_Mug.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\Mugged_Logo.jpg",
+      "PackagePath": "staticwebassets\\Images\\Mugged_Logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\custom_mugs\\c80a5baa-754e-4544-a8e4-35de9a778d3c_bestrong.png",
+      "PackagePath": "staticwebassets\\Images\\custom_mugs\\c80a5baa-754e-4544-a8e4-35de9a778d3c_bestrong.png"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\email_icon.png",
+      "PackagePath": "staticwebassets\\Images\\email_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\etbq2te4.ubq.jpeg",
+      "PackagePath": "staticwebassets\\Images\\etbq2te4.ubq.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\guqor5re.hfg.jpg",
+      "PackagePath": "staticwebassets\\Images\\guqor5re.hfg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\kdahd43h.ixq.jpeg",
+      "PackagePath": "staticwebassets\\Images\\kdahd43h.ixq.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\location_icon.png",
+      "PackagePath": "staticwebassets\\Images\\location_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\lu4lobvi.dgs.jpg",
+      "PackagePath": "staticwebassets\\Images\\lu4lobvi.dgs.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\mastercard_icon.png",
+      "PackagePath": "staticwebassets\\Images\\mastercard_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\oc2sarbf.tzl.jpg",
+      "PackagePath": "staticwebassets\\Images\\oc2sarbf.tzl.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\phone_icon.png",
+      "PackagePath": "staticwebassets\\Images\\phone_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\rselyzjd.s0d.jpeg",
+      "PackagePath": "staticwebassets\\Images\\rselyzjd.s0d.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\urdku5su.fbp.jpg",
+      "PackagePath": "staticwebassets\\Images\\urdku5su.fbp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\Images\\visa_icon.png",
+      "PackagePath": "staticwebassets\\Images\\visa_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\lab_services_student\\source\\repos\\MuggedShop 22 November 2024\\MuggedShop\\MuggedShop\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MuggedShop.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MuggedShop.props",
+      "PackagePath": "build\\MuggedShop.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MuggedShop.props",
+      "PackagePath": "buildMultiTargeting\\MuggedShop.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MuggedShop.props",
+      "PackagePath": "buildTransitive\\MuggedShop.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

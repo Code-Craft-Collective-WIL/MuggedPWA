@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .about-section {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .category-section {
+        margin: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .category-block {
+        background-color: #e6f0ff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        width: calc(33.33% - 20px);
+        box-sizing: border-box;
+        transition: transform 0.2s;
+    }
+
+        .category-block:hover {
+            transform: scale(1.05);
+        }
+
+    .icon {
+        font-size: 50px;
+        color: #d753a7;
+        margin-bottom: 10px;
+    }
+
+    .category-title {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .location-section {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    @@media (max-width: 768px) {
+        .category-block {
+            width: calc(50% - 20px);
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .category-block {
+            width: 100%;
+        }
+    }
+</style>
+
+<h1>About Us</h1>
+
+<div class="about-section">
+    <p style="text-align: center;">
+        Welcome to Mugged, your go-to destination for personalized and customized mugs and gifts! Based in Port Elizabeth, we specialize in crafting unique items that add a personal touch to your life and make perfect gifts for any occasion.
+    </p>
+</div>
+
+<div class="category-section">
+    <h3 style="text-align: center;">Our Categories</h3>
+    <div class="categories">
+        <div class="category-block">
+            <i class="fas fa-gift icon"></i>
+            <h4 class="category-title">Personalized Gifts</h4>
+        </div>
+        <div class="category-block">
+            <i class="fas fa-coffee icon"></i>
+            <h4 class="category-title">Mugs</h4>
+        </div>
+        <div class="category-block">
+            <i class="fas fa-table icon"></i>
+            <h4 class="category-title">Coasters</h4>
+        </div>
+        <div class="category-block">
+            <i class="fas fa-mouse-pointer icon"></i>
+            <h4 class="category-title">Mousepads</h4>
+        </div>
+        <div class="category-block">
+            <i class="fas fa-key icon"></i>
+            <h4 class="category-title">Keyrings</h4>
+        </div>
+        <div class="category-block">
+            <i class="fas fa-hat-cowboy icon"></i>
+            <h4 class="category-title">Caps</h4>
+        </div>
+    </div>
+</div>
+
+<div class="location-section">
+    <h3 style="text-align: center;">Where to Find Us</h3>
+    <p style="text-align: center;">
+        Collection is available from <strong>Happiness The Shop</strong> or <strong>My House (Rowallan Park)</strong>. Delivery fees apply for locations outside of these.
+    </p>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMWZ4sh6ro1jtxcpW3f5A84U6pAM8g5eFYqU4" crossorigin="anonymous">
+}

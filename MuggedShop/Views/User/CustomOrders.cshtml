@@ -1,0 +1,196 @@
+﻿@model IEnumerable<MuggedShop.Models.CustomOrder>
+@{
+    ViewData["Title"] = "Your Custom Orders";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        table-layout: fixed;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        width: 20%;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    th {
+        background-color: #f88f5f;
+        color: black;
+    }
+
+    .img-thumbnail {
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+        .img-thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+    .custom-action-button {
+        padding: 5px 10px;
+        background-color: #d753a7;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+    }
+
+        .custom-action-button:hover {
+            background-color: #ef674d;
+            color: white;
+        }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem; /* Space between buttons */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filter-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<h1>Your Custom Mug Orders</h1>
+
+<form method="get" asp-action="ExportPdf4" asp-controller="User" class="mb-3">
+    <input type="hidden" name="startDate" value="@(ViewBag.StartDate ?? "")" />
+    <input type="hidden" name="endDate" value="@(ViewBag.EndDate ?? "")" />
+    <input type="hidden" name="status" value="@(ViewBag.Status ?? "Pending")" />
+
+    <button type="submit" class="custom-action-button">Export to PDF</button>
+</form>
+
+<form method="get" class="mb-3 filter-form">
+    <!-- Order Status Filter -->
+    <div class="form-group">
+        <label for="status">Order Status</label>
+        <select class="form-control" id="status" name="status" onchange="this.form.submit()">
+            <option value="Pending" selected="@(ViewBag.Status == "Pending" ? "selected" : null)">Unprocessed</option>
+            <option value="Processed" selected="@(ViewBag.Status == "Processed" ? "selected" : null)">Processed</option>
+        </select>
+    </div>
+
+    <!-- Date Range Filter -->
+    <div class="form-group">
+        <label for="startDate">Start Date (yyyy/mm/dd)</label>
+        <input type="date" class="form-control" id="startDate" name="startDate" value="@ViewBag.StartDate" />
+    </div>
+    <div class="form-group">
+        <label for="endDate">End Date (yyyy/mm/dd)</label>
+        <input type="date" class="form-control" id="endDate" name="endDate" value="@ViewBag.EndDate" />
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="form-group">
+        <label>&nbsp;</label>
+        <div style="display: flex; gap: 0.5rem;">
+            <button type="submit" class="custom-action-button">Filter</button>
+            <a asp-action="CustomOrders" class="custom-action-button">Reset Filter</a>
+        </div>
+    </div>
+</form>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Processed Date</th>
+                <th>Custom Text</th>
+                <th>Custom Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.CustomOrderId</td>
+                        <td>@order.CreatedAt</td>
+                        <td>@(order.ProcessedDate.HasValue ? order.ProcessedDate.Value.ToString("yyyy/MM/dd") : "Not Yet Processed")</td>
+                        <td>@order.CustomText</td>
+                        <td>
+                            <a href="@order.CustomImageUrl" target="_blank">
+                                <img src="@order.CustomImageUrl" alt="Custom Image" width="100" height="100" class="img-thumbnail" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center">No custom orders found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Function to get URL query parameters(Troeslen & Japikse, 2021)
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // On page load, set the status dropdown and date input fields to the value from the query string(Troeslen & Japikse, 2021)
+    window.onload = function () {
+        // Set the status dropdown(Troeslen & Japikse, 2021)
+        var statusParam = getQueryParam('status');
+        if (statusParam) {
+            var statusSelect = document.getElementById('status');
+            for (var i = 0; i < statusSelect.options.length; i++) {
+                if (statusSelect.options[i].value === statusParam) {
+                    statusSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        // Set the start date(Troeslen & Japikse, 2021)
+        var startDateParam = getQueryParam('startDate');
+        if (startDateParam) {
+            document.getElementById('startDate').value = startDateParam;
+        }
+
+        // Set the end date(Troeslen & Japikse, 2021)
+        var endDateParam = getQueryParam('endDate');
+        if (endDateParam) {
+            document.getElementById('endDate').value = endDateParam;
+        }
+    }
+</script>
+

@@ -1,0 +1,179 @@
+﻿@model IEnumerable<MuggedShop.ModelViews.CategoryViewModel>
+
+<style>
+    .toast {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .custom-add-to-cart-button {
+        padding: 5px 10px;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+        .custom-add-to-cart-button.in-stock {
+            background-color: #d753a7;
+        }
+
+        .custom-add-to-cart-button.out-of-stock {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
+        .custom-add-to-cart-button:hover:not(.out-of-stock) {
+            background-color: #ef674d;
+            color: white;
+        }
+
+    .quantity-input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .list-group-item.active {
+        background-color: #f88f5f !important;
+        border-color: #f88f5f !important;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+@if (TempData["ProductName"] != null)
+{
+    <div class="toast" id="addToCartToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Item Added</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            @TempData["ProductName"] has been added to your cart!
+        </div>
+    </div>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("addToCartToast")) {
+            var toastEl = document.getElementById("addToCartToast");
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    });
+</script>
+
+@{
+    var selectedCategory = ViewBag.SelectedCategory as string;
+    var totalProductCount = ViewBag.TotalProductCount as int?;
+    int totalProducts = totalProductCount ?? 0;
+}
+
+@if (Model == null || !Model.Any())
+{
+    <p>No products found.</p>
+}
+else
+{
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="@Url.Action("ProductList", new { selectedCategory = (string)null })" class="list-group-item list-group-item-action @(string.IsNullOrEmpty(selectedCategory) ? "active" : "")">
+                    Personalized Gifts (Total: @totalProducts)
+                </a>
+
+                @foreach (var category in Model)
+                {
+                    <a href="@Url.Action("ProductList", new { selectedCategory = category.CategoryName })" class="list-group-item list-group-item-action @(selectedCategory == category.CategoryName ? "active" : "")">
+                        @category.CategoryName (@category.ProductCount)
+                    </a>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <h3 style="letter-spacing: 1.5px; color: black; text-decoration: underline;">
+                @(string.IsNullOrEmpty(selectedCategory) ? "All Products" : selectedCategory)
+            </h3>
+
+            <div class="row mt-4">
+                @foreach (var category in Model)
+                {
+                    foreach (var subcategory in category.Subcategories)
+                    {
+                        if (string.IsNullOrEmpty(selectedCategory) || category.CategoryName == selectedCategory)
+                        {
+                            @foreach (var product in subcategory.Products)
+                            {
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                    <div class="card shadow-sm h-100">
+                                        <img class="card-img-top" src="@Url.Content(product.ImageUrl ?? "/Images/default.jpg")" alt="@product.ProductName" style="height: 200px; object-fit: contain; padding: 10px;">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title" style="min-height: 50px;">@product.ProductName</h5>
+                                            <p class="card-text">R @product.Price</p>
+                                            <!-- Check the StockCount to determine if the product is in stock -->
+                                            @if (product.StockCount > 0)
+                                            {
+                                                <div class="action-buttons">
+                                                    <form asp-action="AddToCart" method="post" style="width: 100%;" onsubmit="return validateQuantity(this, @product.StockCount);">
+                                                        <input type="hidden" name="productId" value="@product.ProductId" />
+                                                        <input type="number" name="quantity" min="1" value="1" class="quantity-input" />
+                                                        <button type="submit" class="custom-add-to-cart-button in-stock">Add To Cart</button>
+                                                    </form>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="action-buttons">
+                                                    <input type="number" disabled value="1" class="quantity-input" />
+                                                    <button class="custom-add-to-cart-button out-of-stock" disabled>Add To Cart</button>
+                                                    <span class="text-danger font-weight-bold" style="margin-top: 5px;">Out of Stock</span>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+<br />
+
+<script>
+    function validateQuantity(form, stockCount) {
+        var quantity = form.quantity.value;
+        if (quantity > stockCount) {
+            alert('Quantity exceeds available stock. Please enter a smaller quantity.');
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>

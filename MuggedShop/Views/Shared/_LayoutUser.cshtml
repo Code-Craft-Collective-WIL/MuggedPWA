@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MuggedShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            background-color: white;
+        }
+
+        .custom-form input[type=text],
+        .custom-form select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .custom-form input[type=submit] {
+            width: 100%;
+            background-color: #f7905f;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .custom-form input[type=submit]:hover {
+                background-color: #e588c7;
+            }
+
+        .custom-form div {
+            border-radius: 5px;
+            background-color: #fed59c;
+            padding: 20px;
+        }
+
+        .container {
+            flex: 1;
+            padding-bottom: 60px;
+        }
+
+        .topnav {
+            width: 100%;
+            background-image: linear-gradient(#f88f5f, #fed59c);
+            overflow: auto;
+        }
+
+            .topnav a {
+                float: left;
+                padding: 10px;
+                color: black;
+                text-decoration: none;
+                font-size: 17px;
+                width: 20%;
+                text-align: center;
+            }
+
+                .topnav a:hover {
+                    background-color: #d753a7;
+                    color: white;
+                }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 15%;
+        }
+
+        h1 {
+            letter-spacing: 1.5px;
+            color: black;
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        footer {
+            background-image: linear-gradient(#f7905f, #fed59c);
+            color: black;
+            padding-top: 50px;
+            text-align: center;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .container {
+            padding-bottom: 60px;
+        }
+
+        .topnav a.icon {
+            float: right;
+            display: none;
+            font-size: 20px;
+            padding: 10px;
+            color: black;
+            width: auto;
+        }
+
+            .topnav a.icon:hover {
+                color: white;
+            }
+
+        @@media screen and (max-width: 600px) {
+            .topnav a:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a.icon {
+                display: block;
+            }
+
+            .topnav.responsive {
+                position: relative;
+            }
+
+                .topnav.responsive .icon {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: auto;
+                }
+
+                .topnav.responsive a {
+                    float: none;
+                    display: block;
+                    text-align: left;
+                    width: 100%;
+                }
+
+                    .topnav.responsive a:hover:not(.icon) {
+                        background-color: #e588c7;
+                        color: white;
+                        width: 100%;
+                    }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="~/images/Mugged_Logo.jpg" alt="Logo" class="logo">
+        </div>
+
+        <nav class="topnav" id="myTopnav">
+            <a asp-action="UserHome" asp-controller="User">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a asp-action="OrderHistory" asp-controller="User">
+                <i class="fas fa-history"></i> Order History
+            </a>
+            <a asp-action="CustomOrders" asp-controller="User">
+                <i class="fas fa-cogs"></i> CustomOrder History
+            </a>
+            <a asp-action="EditProfile" asp-controller="User">
+                <i class="fas fa-user-edit"></i> Edit Profile
+            </a>
+            <!-- Logout button -->
+            <a asp-controller="User" asp-action="Logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </nav>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <!-- Inserted Footer Section -->
+    <footer style="color:black">
+        <div class="container" style="color:black">
+            <p style="margin: 0;">&copy; 2024. Mugged. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+        function logout() {
+            $.post('@Url.Action("Logout", "User")', function () {
+                window.location.href = '@Url.Action("Index", "Home")';
+            });
+        }
+
+        window.onload = function () {
+            if (sessionStorage.getItem('loggedOut') === 'true') {
+                sessionStorage.removeItem('loggedOut');
+                window.location.href = '@Url.Action("Index", "Home")';
+            }
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,108 @@
+﻿@model MuggedShop.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit Product</h1>
+
+<div class="custom-form">
+    <!-- Display the error message from ViewBag if it exists -->
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    <form asp-action="EditProduct" enctype="multipart/form-data" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!-- Hidden field for ProductId -->
+        <input type="hidden" asp-for="ProductId" />
+
+        <div class="form-group">
+            <label asp-for="CategoryId" class="control-label"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.CategoryId"></select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductName" class="control-label"></label>
+            <input asp-for="ProductName" class="form-control" />
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" type="number" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StockCount" class="control-label"></label>
+            <input asp-for="StockCount" class="form-control" />
+            <span asp-validation-for="StockCount" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Current Image:</label>
+            <div style="cursor: pointer;">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Url.Content(Model.ImageUrl)" alt="Current Image" style="max-width: 200px; max-height: 200px;" onclick="document.getElementById('fileInput').click();" />
+                }
+                else
+                {
+                    <p>No image uploaded.</p>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Upload New Image (optional):</label>
+            <input type="file" id="fileInput" name="file" style="display: none;" onchange="updateImageLabel()" />
+            <p class="small text-muted">Click the image to upload a new one. Leave blank if you do not want to change the current image.</p>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="SAVE CHANGES" class="btn btn-primary" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'" />
+        </div>
+
+        <br />
+
+        <div>
+            <a asp-action="ViewProduct" class="btn btn-secondary" style="font-weight:bold;">Back to Products</a>
+        </div>
+
+        <br /><br /><br /><br />
+
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    function updateImageLabel() {
+        const input = document.getElementById('fileInput');
+        const label = input.nextElementSibling; // Get the next sibling <p> element for instructions
+        if (input.files.length > 0) {
+            label.textContent = `Selected file: ${input.files[0].name}`;
+        } else {
+            label.textContent = "Click the image to upload a new one.";
+        }
+    }
+</script>
+

@@ -1,0 +1,75 @@
+﻿@model MuggedShop.Models.Product
+
+@{
+    ViewData["Title"] = "Add Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+<h1>Add Product</h1>
+
+<div class="custom-form">
+    <!-- Display the error message from ViewBag if it exists -->
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+    <form asp-action="AddProduct" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="CategoryId" class="control-label"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProductName" class="control-label"></label>
+            <input asp-for="ProductName" class="form-control" />
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StockCount" class="control-label"></label>
+            <input asp-for="StockCount" class="form-control" />
+            <span asp-validation-for="StockCount" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ImageFile" class="control-label">Upload Image</label>
+            <input type="file" name="file" class="form-control" required />
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <input type="submit" value="ADD PRODUCT" class="btn btn-primary" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'" />
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <a asp-action="ViewProducts" class="btn btn-secondary" style="font-weight:bold;">Back to Products</a>
+        </div>
+
+        <br /><br /><br /><br />
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

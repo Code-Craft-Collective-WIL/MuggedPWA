@@ -1,0 +1,47 @@
+﻿@model MuggedShop.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Delete Product</h1>
+
+<hr />
+
+<div class="alert alert-danger">
+    <h4>Are you sure you want to delete this product?</h4>
+</div>
+
+<div class="custom-form">
+    <form asp-action="DeleteProduct" method="post">
+        <input type="hidden" asp-for="ProductId" />
+
+        <div class="form-group">
+            <label asp-for="ProductName" class="control-label">Product Name</label>
+            <input asp-for="ProductName" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label">Price</label>
+            <input asp-for="Price" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="StockCount" class="control-label">Stock Count</label>
+            <input asp-for="StockCount" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Product Image</label>
+            <img src="@Url.Content(Model.ImageUrl)" alt="@Model.ProductName" class="img-fluid" style="max-width: 300px;" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="DELETE" class="btn btn-danger" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'" />
+            <a asp-action="ViewProduct" class="btn btn-secondary" style="font-weight:bold;">Cancel</a>
+        </div>
+
+        <br /><br /><br /><br />
+    </form>
+</div>

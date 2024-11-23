@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    ViewData["Title"] = "User Dashboard";
+}
+
+<style>
+    .dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 40px;
+    }
+
+    .dashboard-item-wrapper {
+        border-radius: 10px;
+        background: linear-gradient(to right, #f88f5f, #fed59c, #d753a7, #e98dcc); 
+        padding: 6px;
+    }
+
+    .dashboard-item {
+        border-radius: 8px;
+        background: white; 
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+        padding: 30px;
+        text-align: center;
+        min-height: 320px;
+        font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-weight: bold;
+        color: black;
+    }
+
+        .dashboard-item h2 {
+            font-size: 1.8em;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-item p {
+            font-size: 16px;
+            color: black;
+            margin-top: 5px;
+        }
+
+    .icon {
+        font-size: 50px;
+        color: black;
+        margin-bottom: 15px;
+    }
+
+    .counts {
+        margin-top: 15px;
+    }
+
+        .counts div {
+            margin-bottom: 10px;
+        }
+
+    .label {
+        font-size: 0.9em;
+        color: black;
+    }
+</style>
+
+<h1 style="letter-spacing: 1.5px; color: black; text-align: center; padding-top: 10px;">User Dashboard</h1>
+
+<div class="dashboard">
+    <div class="dashboard-item-wrapper">
+        <div class="dashboard-item">
+            <h2>Regular Orders</h2>
+            <div class="icon">☕📦</div>
+            <div class="counts">
+                <div>
+                    <h2>@ViewBag.PendingOrdersCount</h2>
+                    <p class="label">Pending Orders</p>
+                </div>
+                <div>
+                    <h2>@ViewBag.ProcessedOrdersCount</h2>
+                    <p class="label">Processed Orders</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-item-wrapper">
+        <div class="dashboard-item">
+            <h2>Custom Orders</h2>
+            <div class="icon">☕🎨</div>
+            <div class="counts">
+                <div>
+                    <h2>@ViewBag.PendingCustomOrdersCount</h2>
+                    <p class="label">Pending Custom Orders</p>
+                </div>
+                <div>
+                    <h2>@ViewBag.ProcessedCustomOrdersCount</h2>
+                    <p class="label">Processed Custom Orders</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

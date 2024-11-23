@@ -1,0 +1,368 @@
+﻿@model MuggedShop.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout Order";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .checkout-container {
+            max-width: 960px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        .checkout-title, .checkout-subtitle, .checkout-cart-title {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .checkout-form {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .checkout-form-group label {
+            font-weight: 600;
+            color: black;
+            margin-bottom: 5px;
+        }
+
+        .checkout-form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+            .checkout-form-control:focus {
+                border-color: #d753a7;
+                box-shadow: 0 0 5px rgba(215, 83, 167, 0.4);
+            }
+
+        .checkout-btn-primary {
+            background-color: #d753a7;
+            border: none;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .checkout-btn-primary:hover {
+                background-color: #ef674d;
+            }
+
+        .checkout-alert {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .checkout-price {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .checkout-cart-details {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+
+            .checkout-cart-details p {
+                font-size: 15px;
+                color: #555;
+                margin-bottom: 10px;
+            }
+
+            .checkout-cart-details hr {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+        .card-number-input {
+            padding-right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Checkout Order</h1>
+
+    <div class="checkout-container mt-5">
+
+        @if (TempData["CheckoutSuccess"] != null && (bool)TempData["CheckoutSuccess"])
+        {
+            <div id="checkoutSuccessMessage" class="checkout-alert alert alert-success" role="alert">
+                <strong>Success!</strong> Your order has been placed successfully.
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const successMessage = document.getElementById("checkoutSuccessMessage");
+                    if (successMessage) {
+                        setTimeout(function () {
+                            window.location.href = '@TempData["RedirectPath"]';
+                        }, 3000); // Redirect after 3 seconds
+                    }
+                });
+            </script>
+        }
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Orders</h4>
+                <hr />
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
+
+                <form asp-action="CheckoutOrder" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="checkout-form general-box" style="padding: 20px; border-radius: 8px; background-color: #f9f9f9; margin-top: 20px;">
+                        <!-- General Information Section -->
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.Email" class="control-label"></label>
+                            <input asp-for="Order.Email" class="form-control" readonly />
+                            <span asp-validation-for="Order.Email" class="text-danger"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.FullName" class="control-label"></label>
+                            <input asp-for="Order.FullName" class="form-control" />
+                            <span asp-validation-for="Order.FullName" class="text-danger"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.Address" class="control-label"></label>
+                            <input asp-for="Order.Address" class="form-control" />
+                            <span asp-validation-for="Order.Address" class="text-danger"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.City" class="control-label"></label>
+                            <input asp-for="Order.City" class="form-control" />
+                            <span asp-validation-for="Order.City" class="text-danger"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.Zip" class="control-label"></label>
+                            <input asp-for="Order.Zip" class="form-control" />
+                            <span asp-validation-for="Order.Zip" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information Section -->
+                    <div class="checkout-form payment-box" style="padding: 20px; border-radius: 8px; background-color: #f9f9f9; margin-top: 20px;">
+                        <div class="payment-icons" style="margin-bottom: 15px; text-align: center;">
+                            <img src="~/images/visa_icon.png" alt="Visa" style="width: 40px; margin-right: 10px;">
+                            <img src="~/images/mastercard_icon.png" alt="MasterCard" style="width: 40px;">
+                        </div>
+
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.CardName" class="control-label"></label>
+                            <input asp-for="Order.CardName" class="form-control" />
+                            <span asp-validation-for="Order.CardName" class="text-danger"></span>
+                        </div>
+                        <div class="checkout-form-group" style="position: relative;">
+                            <label asp-for="Order.CardNumber" class="control-label"></label>
+                            <input asp-for="Order.CardNumber" class="form-control checkout-form-control card-number-input" oninput="detectCardType(this)" />
+                            <span asp-validation-for="Order.CardNumber" class="text-danger"></span>
+
+                            <!-- Icon container with the correct relative path -->
+                            <img id="cardIcon" src="" alt="Card Icon" style="width: 30px; position: absolute; top: 65%; right: 15px; transform: translateY(-50%); display: none;" />
+
+                            <!-- Error message for invalid card -->
+                            <span id="cardError" class="text-danger" style="display:none;"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.ExpMonth" class="control-label"></label>
+                            <input asp-for="Order.ExpMonth" class="form-control" oninput="validateExpiryDate()" />
+                            <span id="monthError" class="text-danger" style="display:none;"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.ExpYear" class="control-label"></label>
+                            <input asp-for="Order.ExpYear" class="form-control" oninput="validateExpiryDate()" />
+                            <span id="yearError" class="text-danger" style="display:none;"></span>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label asp-for="Order.Cvv" class="control-label"></label>
+                            <input asp-for="Order.Cvv" class="form-control" />
+                            <span id="cvvError" class="text-danger" style="display:none;"></span>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="checkout-form-group">
+                        <input type="submit" id="checkoutButton" value="CHECKOUT" class="btn btn-primary"
+                               style="background-color: #d753a7; color: white; font-weight: bold; border: none; padding: 10px 20px; cursor: pointer;"
+                               onmouseover="this.style.backgroundColor='#ef674d'"
+                               onmouseout="this.style.backgroundColor='#d753a7'" disabled />
+                    </div>
+                    <br /><br />
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Cart Details</h4>
+                <hr />
+                <div class="checkout-cart-details">
+                    <h5>Items in Cart <span style="color:black"><i class="fa fa-shopping-cart"></i> <b>@(Model.CartItems?.Count() ?? 0)</b></span></h5>
+                    @if (Model.CartItems != null && Model.CartItems.Any())
+                    {
+                        foreach (var item in Model.CartItems)
+                        {
+                            <p>
+                                <strong>@item.ProductName</strong>
+                                <span class="checkout-price">R @item.Price * @item.Quantity</span>
+                            </p>
+                        }
+                        <hr />
+                        <p>Total <span class="checkout-price" style="color:black"><b>R @Model.CartItems.Sum(item => item.Price * item.Quantity)</b></span></p>
+                    }
+                    else
+                    {
+                        <p>No items in the cart.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+   function detectCardType(input) {
+            const cardNumber = input.value.replace(/\D/g, ''); // Remove non-digit characters (Troeslen & Japikse, 2021)
+            const visaPattern = /^4[0-9]{12}(?:[0-9]{3})?$/;  // Visa: Starts with 4, 13 or 16 digits (Troeslen & Japikse, 2021)
+            const masterCardPattern = /^5[1-5][0-9]{14}$/;    // MasterCard: Starts with 51-55, 16 digits (Troeslen & Japikse, 2021)
+            const isVisa = visaPattern.test(cardNumber);
+            const isMasterCard = masterCardPattern.test(cardNumber);
+            const cardIcon = document.getElementById('cardIcon');
+            const errorElement = document.getElementById('cardError');
+            const checkoutButton = document.getElementById('checkoutButton');
+
+            // Card number validation (Troeslen & Japikse, 2021)
+            if (cardNumber.length === 0) {
+                cardIcon.style.display = 'none';
+                errorElement.style.display = 'none';
+                checkoutButton.disabled = true;
+            } else if (isVisa) {
+                cardIcon.src = '/Images/visa_icon.png';
+                cardIcon.style.display = 'inline';
+                errorElement.style.display = 'none';
+                checkoutButton.disabled = false;
+            } else if (isMasterCard) {
+                cardIcon.src = '/Images/mastercard_icon.png';
+                cardIcon.style.display = 'inline';
+                errorElement.style.display = 'none';
+                checkoutButton.disabled = false;
+            } else {
+                cardIcon.style.display = 'none';
+                errorElement.style.display = 'block';
+                errorElement.textContent = 'Please enter a valid Visa or MasterCard number.';
+                checkoutButton.disabled = true;
+            }
+
+            validateExpiryDate(); // Call expiry validation whenever the card number is updated (Troeslen & Japikse, 2021)
+            validateCVV(); // Call CVV validation whenever the card number is updated
+        }
+
+        function validateExpiryDate() {
+            const expMonth = document.querySelector('input[name="Order.ExpMonth"]').value.trim();
+            const expYear = document.querySelector('input[name="Order.ExpYear"]').value.trim();
+            const monthError = document.getElementById('monthError');
+            const yearError = document.getElementById('yearError');
+            const checkoutButton = document.getElementById('checkoutButton');
+            const currentYear = new Date().getFullYear();
+            const currentMonth = new Date().getMonth() + 1; // Months are zero-indexed (Troeslen & Japikse, 2021)
+
+            let validMonth = false;
+            let validYear = false;
+
+            // Validate expiry month (should be between 01 and 12) (Troeslen & Japikse, 2021)
+            if (expMonth >= 1 && expMonth <= 12) {
+                validMonth = true;
+                monthError.style.display = 'none';
+            } else {
+                validMonth = false;
+                monthError.style.display = 'block';
+                monthError.textContent = 'Please enter a valid month (01-12).';
+            }
+
+            // Validate expiry year (should be greater than or equal to the current year) (Troeslen & Japikse, 2021)
+            if (expYear >= currentYear) {
+                if (expYear == currentYear && expMonth < currentMonth) {
+                    validYear = false;
+                    yearError.style.display = 'block';
+                    yearError.textContent = 'Card has already expired.';
+                } else {
+                    validYear = true;
+                    yearError.style.display = 'none';
+                }
+            } else {
+                validYear = false;
+                yearError.style.display = 'block';
+                yearError.textContent = 'Please enter a valid year (current year or later).';
+            }
+
+            // Enable or disable checkout button based on all validations (Troeslen & Japikse, 2021)
+            if (validMonth && validYear && document.getElementById('cardError').style.display === 'none') {
+                checkoutButton.disabled = false; // Enable if everything is valid (Troeslen & Japikse, 2021)
+            } else {
+                checkoutButton.disabled = true; // Disable if any validation fails (Troeslen & Japikse, 2021)
+            }
+        }
+
+        function validateCVV() {
+            const cvv = document.querySelector('input[name="Order.Cvv"]').value.trim();
+            const cvvError = document.getElementById('cvvError');
+            const checkoutButton = document.getElementById('checkoutButton');
+            const cardNumber = document.querySelector('input[name="Order.CardNumber"]').value.replace(/\D/g, '');
+            const isVisa = /^4[0-9]{12}(?:[0-9]{3})?$/.test(cardNumber); // Visa Pattern (Troeslen & Japikse, 2021)
+            const isMasterCard = /^5[1-5][0-9]{14}$/.test(cardNumber); // MasterCard Pattern (Troeslen & Japikse, 2021)
+
+            let validCVV = false;
+
+            // CVV validation (3 digits for Visa and MasterCard) (Troeslen & Japikse, 2021)
+            if ((isVisa || isMasterCard) && cvv.length === 3) {
+                validCVV = true;
+                cvvError.style.display = 'none';
+            } else {
+                validCVV = false;
+                cvvError.style.display = 'block';
+                cvvError.textContent = 'Please enter a valid CVV (3 digits).';
+            }
+
+            // Enable or disable checkout button based on all validations (Troeslen & Japikse, 2021)
+            if (validCVV && document.getElementById('monthError').style.display === 'none' && document.getElementById('yearError').style.display === 'none' && document.getElementById('cardError').style.display === 'none') {
+                checkoutButton.disabled = false; // Enable if everything is valid (Troeslen & Japikse, 2021)
+            } else {
+                checkoutButton.disabled = true; // Disable if any validation fails (Troeslen & Japikse, 2021)
+            }
+        }
+
+    </script>
+</body>
+</html>

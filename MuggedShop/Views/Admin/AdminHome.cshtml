@@ -1,0 +1,560 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* Table Styles */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        margin-top: 20px;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 12px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    tr:hover {
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
+
+    th {
+        background-color: #f06d47;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* Card Styles */
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+    }
+
+    .card-text {
+        font-size: 2rem;
+        color: #333;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+    }
+
+    .card-body h5 {
+        margin-bottom: 15px;
+        font-size: 1.25rem;
+        color: #333;
+    }
+
+    /* Chart Styles */
+    .chart-container {
+        margin-bottom: 30px;
+    }
+
+    #orderStatusChart {
+        width: 100% !important;
+        height: 296px !important;
+        margin: 0 auto;
+    }
+
+    /* Media Queries for Responsiveness */
+    @@media screen and (max-width: 768px) {
+        table, th, td {
+            font-size: 14px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-text {
+            font-size: 1.5rem;
+        }
+
+        .chart-container {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+
+<h1>Admin Dashboard</h1>
+
+<h4 class="text-center text-decoration-underline mb-4">System Overview</h4>
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Total Users</h5>
+                <p id="totalUsersCard" class="card-text">Loading...</p>
+                <a asp-controller="Admin" asp-action="ViewUsers" class="btn btn-primary" style="width: 100%; color: white; background-color: #d753a7; font-weight: bold; border: none; padding: 10px 0; cursor: pointer;"
+                   onmouseover="this.style.backgroundColor='#ef674d'"
+                   onmouseout="this.style.backgroundColor='#d753a7'">Manage Users</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Total Administrators</h5>
+                <p id="totalAdminsCard" class="card-text">Loading...</p>
+                <a asp-controller="Admin" asp-action="ViewAdmin" class="btn btn-primary" style="width: 100%; color: white; background-color: #d753a7; font-weight: bold; border: none; padding: 10px 0; cursor: pointer;"
+                   onmouseover="this.style.backgroundColor='#ef674d'"
+                   onmouseout="this.style.backgroundColor='#d753a7'">Manage Administrators</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Pending Regular Orders</h5>
+                <p id="pendingRegularOrdersCard" class="card-text">Loading...</p>
+                <a asp-controller="Admin" asp-action="OrderHistory" class="btn btn-primary" style="width: 100%; color: white; background-color: #d753a7; font-weight: bold; border: none; padding: 10px 0; cursor: pointer;"
+                   onmouseover="this.style.backgroundColor='#ef674d'"
+                   onmouseout="this.style.backgroundColor='#d753a7'">View Regular Orders</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5>Pending Custom Orders</h5>
+                <p id="pendingCustomOrdersCard" class="card-text">Loading...</p>
+                <a asp-controller="Admin" asp-action="CustomOrders" class="btn btn-primary" style="width: 100%; color: white; background-color: #d753a7; font-weight: bold; border: none; padding: 10px 0; cursor: pointer;"
+                   onmouseover="this.style.backgroundColor='#ef674d'"
+                   onmouseout="this.style.backgroundColor='#d753a7'">Manage Custom Orders</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="text-center text-decoration-underline mb-4">Sales</h4>
+<div class="row mb-4">
+    <div class="col-md-6 mb-4">
+        <div class="card chart-container">
+            <div class="card-body">
+                <h5 style="text-align:center">Total Sales Over Time</h5>
+                <canvas id="totalSalesChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card chart-container">
+            <div class="card-body">
+                <h5 style="text-align:center"> Sales by Category</h5>
+                <canvas id="salesByCategoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="text-center text-decoration-underline mb-4">Order Insights</h4>
+<div class="row mb-4">
+    <div class="col-md-6 mb-4">
+        <div class="card chart-container">
+            <div class="card-body">
+                <h5 style="text-align:center" ">Order Status Distribution</h5>
+                <canvas id="orderStatusChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card chart-container">
+            <div class="card-body">
+                <h5 style="text-align:center">Product Performance</h5>
+                <canvas id="productPerformanceChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card chart-container">
+            <div class="card-body">
+                <h5 style="text-align:center">Top Customer Chart</h5>
+                <canvas id="topCustomersChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card chart-container">
+            <div class="card-body">
+                <h5 style="text-align:center">Stock Availability</h5>
+                <canvas id="stockAvailabilityChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Most Active Customers Table (Troeslen & Japikse, 2021) -->
+<h4 style="text-align:center">Top 3 Most Active Customers</h4>
+<div class="table-container">
+    <table id="activeCustomersTable">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Order Count</th>
+                <th>Total Spend</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data rows will be inserted dynamically (Troeslen & Japikse, 2021) -->
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+<script>
+    // Define a color palette based on the logo for consistent chart styling (Troeslen & Japikse, 2021)
+    const colors = {
+        primary: '#f06d47', // Soft orange (Troeslen & Japikse, 2021)
+        secondary: '#f9b68c', // Peach (Troeslen & Japikse, 2021)
+        highlight: '#d67ea8', // Purple-pink (Troeslen & Japikse, 2021)
+        accent: '#ffcbdd' // Light pink (Troeslen & Japikse, 2021)
+    };
+
+    // Function to fetch data from the server and update HTML elements (Troeslen & Japikse, 2021)
+    function fetchData(url, elementId, callback) {
+        fetch(url)
+            .then(response => response.json()) // Parse the response as JSON (Troeslen & Japikse, 2021)
+            .then(data => callback(data, elementId)); // Pass the data to the callback (Troeslen & Japikse, 2021)
+    }
+
+    // Fetch Total Users count and update the 'totalUsersCard' element (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("TotalUsers", "Admin")', 'totalUsersCard', data => {
+        document.getElementById('totalUsersCard').innerText = `${data}`;
+    });
+
+    // Fetch Total Admin Users count and update the 'totalAdminsCard' element (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("TotalAdmin", "Admin")', 'totalAdminsCard', data => {
+        document.getElementById('totalAdminsCard').innerText = `${data}`;
+    });
+
+    // Fetch Pending Custom Orders count and update the 'pendingCustomOrdersCard' element (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("PendingCustomOrders", "Admin")', 'pendingCustomOrdersCard', data => {
+        document.getElementById('pendingCustomOrdersCard').innerText = `${data}`;
+    });
+
+    // Fetch Pending Regular Orders count and update the 'pendingRegularOrdersCard' element (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("PendingRegularOrders", "Admin")', 'pendingRegularOrdersCard', data => {
+        document.getElementById('pendingRegularOrdersCard').innerText = `${data}`;
+    });
+
+    // Function to render a Line Chart with a gradient (Troeslen & Japikse, 2021)
+    function renderLineChart(ctx, data, label, gradientColors) {
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, gradientColors[0]);
+        gradient.addColorStop(1, gradientColors[1]);
+
+        // Create and render the line chart (Troeslen & Japikse, 2021)
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.map(item => item.date), // Dates for X-axis (Troeslen & Japikse, 2021)
+                datasets: [{
+                    label: label, // Chart label (Troeslen & Japikse, 2021)
+                    data: data.map(item => item.orderCount), // Y-axis values (order count) (Troeslen & Japikse, 2021)
+                    backgroundColor: gradient, // Gradient background (Troeslen & Japikse, 2021)
+                    borderColor: colors.primary, // Border color of the line (Troeslen & Japikse, 2021)
+                    borderWidth: 2 // Line width (Troeslen & Japikse, 2021)
+                }]
+            },
+            options: { responsive: true } // Make the chart responsive to resizing (Troeslen & Japikse, 2021)
+        });
+    }
+
+    // Fetch and render Total Sales Over Time chart (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("TotalSales", "Admin")', 'totalSalesChart', data => {
+        const ctx = document.getElementById('totalSalesChart').getContext('2d');
+
+        // Map month numbers (1-12) to month names (Troeslen & Japikse, 2021)
+        const monthLabels = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+
+        // Prepare the sales data (Troeslen & Japikse, 2021)
+        const orderCounts = Array(12).fill(0); // Create an array for 12 months (Troeslen & Japikse, 2021)
+        const customOrderCounts = Array(12).fill(0); // Create a separate array for custom orders (Troeslen & Japikse, 2021)
+
+        data.forEach(item => {
+            const index = item.month - 1; // Convert 1-based month to 0-based array index (Troeslen & Japikse, 2021)
+            orderCounts[index] = item.orderCount || 0;
+            customOrderCounts[index] = item.customOrderCount || 0;
+        });
+
+        // Render the double bar chart using the existing colors (Troeslen & Japikse, 2021)
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: monthLabels, // Use the month names for the labels (Troeslen & Japikse, 2021)
+                datasets: [
+                    {
+                        label: 'Orders',
+                        data: orderCounts, // Order counts for each month (Troeslen & Japikse, 2021)
+                        backgroundColor: colors.primary, // Use the primary color (Troeslen & Japikse, 2021)
+                        borderColor: colors.secondary, // Use the secondary color for the border (Troeslen & Japikse, 2021)
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Custom Orders',
+                        data: customOrderCounts, // Custom order counts for each month (Troeslen & Japikse, 2021)
+                        backgroundColor: colors.highlight, // Use the highlight color (Troeslen & Japikse, 2021)
+                        borderColor: colors.accent, // Use the accent color for the border (Troeslen & Japikse, 2021)
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top' // Position the legend at the top (Troeslen & Japikse, 2021)
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: false // Ensure the bars are side by side (Troeslen & Japikse, 2021)
+                    },
+                    y: {
+                        beginAtZero: true // Start the Y-axis at 0 (Troeslen & Japikse, 2021)
+                    }
+                }
+            }
+        });
+    });
+
+    // Function to render a Bar Chart (Troeslen & Japikse, 2021)
+    function renderBarChart(ctx, data, label, backgroundColor) {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.product || item.category), // Categories or products for X-axis (Troeslen & Japikse, 2021)
+                datasets: [{
+                    label: label, // Bar chart label (Troeslen & Japikse, 2021)
+                    data: data.map(item => item.salesCount || item.productsSold), // Y-axis data (sales count) (Troeslen & Japikse, 2021)
+                    backgroundColor: backgroundColor, // Bar color (Troeslen & Japikse, 2021)
+                    borderColor: colors.primary, // Border color for bars (Troeslen & Japikse, 2021)
+                    borderWidth: 2 // Border width for bars (Troeslen & Japikse, 2021)
+                }]
+            }
+        });
+    }
+
+    // Fetch and render Product Performance chart (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("ProductPerformance", "Admin")', 'productPerformanceChart', data => {
+        const ctx = document.getElementById('productPerformanceChart').getContext('2d');
+        renderBarChart(ctx, data, 'Sales Count', colors.secondary);
+    });
+
+
+    // Fetch and render Top Customers by Spending (Horizontal Bar Chart) (Troeslen & Japikse, 2021)
+    fetch('@Url.Action("MostActiveCustomers", "Admin")')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('topCustomersChart').getContext('2d');
+
+            // Extract customer names and their spending amounts (Troeslen & Japikse, 2021)
+            const customerNames = data.map(customer => customer.customer); // Customer names (Troeslen & Japikse, 2021)
+            const totalSpending = data.map(customer => customer.totalSpent); // Spending amounts (Troeslen & Japikse, 2021)
+
+            // Render the horizontal bar chart (Troeslen & Japikse, 2021)
+            new Chart(ctx, {
+                type: 'bar', // Bar chart type (Troeslen & Japikse, 2021)
+                data: {
+                    labels: customerNames, // X-axis labels (Troeslen & Japikse, 2021)
+                    datasets: [{
+                        label: 'Total Spending (R)', // Legend label (Troeslen & Japikse, 2021)
+                        data: totalSpending, // Data for bar heights (Troeslen & Japikse, 2021)
+                        backgroundColor: colors.secondary, // Bar colors (Troeslen & Japikse, 2021)
+                        borderColor: colors.primary, // Border color for bars (Troeslen & Japikse, 2021)
+                        borderWidth: 1 // Bar border width (Troeslen & Japikse, 2021)
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Change chart orientation to horizontal (Troeslen & Japikse, 2021)
+                    responsive: true, // Make the chart responsive (Troeslen & Japikse, 2021)
+                    plugins: {
+                        legend: {
+                            position: 'top' // Legend position (Troeslen & Japikse, 2021)
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true // Start X-axis at 0 (Troeslen & Japikse, 2021)
+                        },
+                        y: {
+                            ticks: {
+                                autoSkip: false, // Show all customer names (Troeslen & Japikse, 2021)
+                                maxRotation: 0 // Prevent label rotation (Troeslen & Japikse, 2021)
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching top customers data:', error);
+        });
+
+    // Fetch and render Sales by Category chart (Troeslen & Japikse, 2021)
+    fetchData('@Url.Action("SalesByCategory", "Admin")', 'salesByCategoryChart', data => {
+        const ctx = document.getElementById('salesByCategoryChart').getContext('2d');
+        renderBarChart(ctx, data, 'Products Sold', colors.accent);
+    });
+
+    // Function to render a Pie Chart (Troeslen & Japikse, 2021)
+    function renderPieChart(ctx, data, labels) {
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels, // Labels for pie slices (Troeslen & Japikse, 2021)
+                datasets: [{
+                    data: data.map(d => d.count), // Values for each slice (Troeslen & Japikse, 2021)
+                    backgroundColor: [
+                        colors.primary, colors.highlight, colors.secondary, colors.accent
+                    ] // Slice colors (Troeslen & Japikse, 2021)
+                }]
+            }
+        });
+    }
+
+    // Fetch and render Order Status Distribution Pie Chart (Troeslen & Japikse, 2021)
+    fetch('@Url.Action("OrderStatusDistribution", "Admin")')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('orderStatusChart').getContext('2d');
+
+            // Extract data and labels for the pie chart (Troeslen & Japikse, 2021)
+            const chartData = data.map(d => d.count);
+            const chartLabels = data.map(d => d.status);
+
+            // Log the data for debugging (Troeslen & Japikse, 2021)
+            console.log('Chart Data:', chartData);
+            console.log('Chart Labels:', chartLabels);
+
+            // Render the pie chart (Troeslen & Japikse, 2021)
+            renderPieChart(ctx, chartData, chartLabels);
+        })
+        .catch(error => {
+            console.error('Error fetching order status distribution data:', error);
+        });
+
+    // Function to render the pie chart with datalabels enabled (Troeslen & Japikse, 2021)
+    function renderPieChart(ctx, data, labels) {
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels, // Labels for pie slices (Troeslen & Japikse, 2021)
+                datasets: [{
+                    data: data, // Data for pie chart slices (Troeslen & Japikse, 2021)
+                    backgroundColor: [
+                        colors.primary, colors.highlight, colors.secondary, colors.accent
+                    ], // Slice colors
+                    hoverOffset: 4 // Slightly offset slices on hover (Troeslen & Japikse, 2021)
+                }]
+            },
+            options: {
+                responsive: true, // Make chart responsive (Troeslen & Japikse, 2021)
+                maintainAspectRatio: false, // Allow flexible aspect ratio (Troeslen & Japikse, 2021)
+                plugins: {
+                    legend: {
+                        position: 'top', // Position of the legend (Troeslen & Japikse, 2021)
+                        labels: {
+                            font: {
+                                size: 14 // Font size for the legend labels (Troeslen & Japikse, 2021)
+                            }
+                        }
+                    },
+                    datalabels: {
+                        display: true,  // Show labels on the chart (Troeslen & Japikse, 2021)
+                        color: '#fff',  // White text color for labels (Troeslen & Japikse, 2021)
+                        font: {
+                            weight: 'bold', // Bold font weight for labels (Troeslen & Japikse, 2021)
+                            size: 14  // Font size for labels (Troeslen & Japikse, 2021)
+                        },
+                        formatter: (value, ctx) => {
+                            return `${value}`; // Display only the count of each slice (Troeslen & Japikse, 2021)
+                        },
+                        anchor: 'center',  // Position labels in the center of each slice (Troeslen & Japikse, 2021)
+                        align: 'center'    // Center align the labels inside the slice (Troeslen & Japikse, 2021)
+                    }
+                },
+                layout: {
+                    padding: 10 // Add padding around the chart for spacing (Troeslen & Japikse, 2021)
+                }
+            }
+        });
+    }
+
+    // Fetch and render Stock Availability Bar Chart (Troeslen & Japikse, 2021)
+    fetch('@Url.Action("StockAvailability", "Admin")')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('stockAvailabilityChart').getContext('2d');
+
+            // Initialize and render the bar chart for stock availability (Troeslen & Japikse, 2021)
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(item => item.product),  // Product names for X-axis (Troeslen & Japikse, 2021)
+                    datasets: [{
+                        label: 'Stock Count', // Label for the bars (Troeslen & Japikse, 2021)
+                        data: data.map(item => item.stock),  // Stock count for Y-axis (Troeslen & Japikse, 2021)
+                        backgroundColor: colors.highlight,  // Bar color (Troeslen & Japikse, 2021)
+                        borderColor: colors.accent,         // Border color for bars (Troeslen & Japikse, 2021)
+                        borderWidth: 2                     // Border width (Troeslen & Japikse, 2021)
+                    }]
+                },
+                options: {
+                    responsive: true, // Make the chart responsive (Troeslen & Japikse, 2021)
+                    scales: {
+                        y: {
+                            beginAtZero: true               // Start Y-axis at 0 (Troeslen & Japikse, 2021)
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching stock availability data:', error);
+        });
+
+    // Fetch and populate the Most Active Customers table (Troeslen & Japikse, 2021)
+    fetch('@Url.Action("MostActiveCustomers", "Admin")')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('activeCustomersTable').querySelector('tbody');
+            tableBody.innerHTML = data.map(customer => `
+                                            <tr>
+                                                <td>${customer.customer}</td>
+                                                <td>${customer.orders}</td>
+                                                <td>R${customer.totalSpent.toFixed(2)}</td>
+                                            </tr>
+                                        `).join('');
+        });
+</script>

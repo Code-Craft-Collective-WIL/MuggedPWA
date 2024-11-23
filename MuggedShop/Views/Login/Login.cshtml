@@ -1,0 +1,139 @@
+﻿@model MuggedShop.ModelViews.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    ViewBag.HideNav = true;
+    ViewBag.HideFooter = true;
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, #f88f5f, #fed59c, #d753a7, #e98dcc);
+        padding: 0 10px;
+    }
+
+    .login_form {
+        width: 100%;
+        max-width: 435px;
+        background: #e6f0ff;
+        border-radius: 6px;
+        padding: 41px 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        margin: 0 auto;
+    }
+
+        .login_form h3 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .login_form .input_box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+            .login_form .input_box label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 8px;
+            }
+
+            .login_form .input_box input {
+                width: 100%;
+                height: 57px;
+                border: 1px solid #DADAF2;
+                border-radius: 5px;
+                outline: none;
+                background: #F8F8FB;
+                font-size: 17px;
+                padding: 0px 20px;
+                transition: 0.2s ease;
+            }
+
+                .login_form .input_box input:focus {
+                    border-color: #626cd6;
+                }
+
+        .login_form .btn {
+            width: 100%;
+            height: 56px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background: #004aad;
+            color: #e6f0ff;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 28px;
+            transition: 0.3s ease;
+        }
+
+            .login_form .btn:hover {
+                background: #08075F;
+            }
+
+    .text-danger {
+        color: red;
+    }
+
+    .alert {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="login_form">
+    <h3>Login</h3>
+
+    <!-- Display error messages if they exist -->
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="Login" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="input_box">
+            <label asp-for="EmailAddress" class="control-label"></label>
+            <input asp-for="EmailAddress" class="form-control" required />
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+        </div>
+
+        <div class="input_box">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" type="password" class="form-control" required />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'">LOGIN</button>
+    </form>
+
+    <div class="text-center" style="margin-top: 20px;">
+        <p>If you don’t have an account, <a asp-action="RegisterUser" asp-controller="User" style="color: #d753a7; font-weight: bold;">register here</a>.</p>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

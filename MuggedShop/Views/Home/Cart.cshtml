@@ -1,0 +1,324 @@
+﻿@model List<MuggedShop.ModelViews.CartItem>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Modal and Tab styles */
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            background-color: #d753a7;
+            color: white;
+        }
+
+        .nav-tabs {
+            background-color: #d753a7;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: black;
+        }
+
+        .tab__content {
+            background-color: white;
+            border-radius: 0 0 10px 10px;
+            padding: 20px;
+        }
+
+        form input {
+            border: none;
+            padding: 12px;
+            background: #EEE;
+            font-size: 16px;
+            margin: 12px 0;
+            width: 100%;
+            font-weight: 100;
+            outline: none;
+        }
+
+        form [type="submit"] {
+            background: #d753a7;
+            color: #FFF;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        form [type="submit"]:hover {
+            background: #ef674d;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+        }
+
+        @@media screen and (max-width: 768px) {
+            .table-responsive {
+                display: block;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border: none;
+                border-bottom: 1px solid #ddd;
+                width: 100%;
+                text-align: left;
+            }
+
+            .action-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div class="container">
+
+        <!-- Success Message -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <!-- Cart items or empty message -->
+        @if (Model == null || !Model.Any())
+        {
+            <p>Your cart is empty.</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (item.ProductId == 0) // Custom mug
+                                    {
+                                        var imageData = ViewBag.CustomImageData as byte[];
+                                        var base64Image = imageData != null ? $"data:image/png;base64,{Convert.ToBase64String(imageData)}" : null;
+
+                                        if (base64Image != null)
+                                        {
+                                            <img src="@base64Image" alt="Custom Image" style="height: 50px; width: auto;">
+                                        }
+                                        else
+                                        {
+                                            <img src="/Images/default.jpg" alt="Custom Image" style="height: 50px; width: auto;">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content(item.ImageUrl ?? "/Images/default.jpg")" alt="@item.ProductName" style="height: 50px; width: auto;">
+                                    }
+                                    @item.ProductName
+                                </td>
+                                <td>
+                                    <form asp-action="UpdateCart" method="post" style="display: inline-flex; align-items: center;" onsubmit="return validateQuantity(this, @item.StockCount)">
+                                        <input type="hidden" name="productId" value="@item.ProductId" />
+                                        <input type="number" name="quantity" value="@item.Quantity" min="1" style="width: 60px; text-align: center; margin-right: 5px;" data-stock="@item.StockCount" required />
+                                        <button type="submit" class="btn btn-sm btn-primary" style="background-color: #d753a7; color: white; font-weight: bold; border: none; cursor: pointer;"
+                                                onmouseover="this.style.backgroundColor='#ef674d'"
+                                                onmouseout="this.style.backgroundColor='#d753a7'">
+                                            Update
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>R @item.Price</td>
+                                <td>R @(item.Price * item.Quantity)</td>
+                                <td class="action-buttons">
+                                    <form asp-action="RemoveFromCart" method="post" style="display: inline;">
+                                        <input type="hidden" name="productId" value="@item.ProductId" />
+                                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>Total: R @Model.Sum(item => item.Price * item.Quantity)</h5>
+        }
+
+        <!-- Checkout and Continue Shopping Buttons -->
+        <div class="d-flex justify-content-between">
+            <a href="@Url.Action("Shop", "Home")" class="btn btn-primary" style="background-color: #d753a7; color: white; font-weight: bold; border: none; padding: 10px 20px; cursor: pointer;"
+               onmouseover="this.style.backgroundColor='#ef674d'"
+               onmouseout="this.style.backgroundColor='#d753a7'">Continue Shopping</a>
+
+            @if (Model == null || !Model.Any())
+            {
+                <button class="btn btn-success" disabled style="background-color: grey; color: white;">Checkout</button>
+            }
+            else
+            {
+                <button class="btn btn-success" data-toggle="modal" data-target="#loginModal">Checkout</button>
+            }
+        </div>
+
+        <br /><br />
+
+<!-- Login & Register Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <ul class="nav nav-tabs" id="modalTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                            </li>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tab-content" id="modalTabContent">
+                            <!-- Login Form -->
+                            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <p>Please log in to proceed to checkout!</p>
+
+                                @if (TempData["SuccessMessage"] != null)
+                                {
+                                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                                }
+
+                                @if (TempData["ErrorMessage"] != null)
+                                {
+                                    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                                }
+
+                                <form asp-action="LoginUser" method="post" id="loginForm">
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" name="Email" class="form-control" value="@TempData["Email"]" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="PasswordHash" class="form-control" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Register Form -->
+                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                <p>Create an account to proceed to checkout!</p>
+                                <form asp-action="RegisterUser" method="post" id="registerForm">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        <input type="text" name="FullName" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" name="Email" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phoneNumber">Phone Number</label>
+                                        <input type="text" name="PhoneNumber" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="Password" class="form-control" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to handle modal logic and checkout redirection -->
+    <script>
+        $(document).ready(function () {
+            // Show modal if there's an error message
+            if ('@TempData["ErrorMessage"]') {
+                $('#loginModal').modal('show');
+            }
+            // Show the login modal if registration was successful
+            if ('@TempData["ShowLoginModal"]' === 'True') {
+                $('#loginModal').modal('show');
+                $('#modalTab a[href="#login"]').tab('show');
+            }
+            // Check if we need to redirect to checkout
+            var redirectToCheckout = '@TempData["RedirectToCheckout"]' === 'True';
+            if (redirectToCheckout) {
+                setTimeout(function () {
+                    var userEmail = '@ViewBag.UserEmail';
+                    if (userEmail) {
+                        window.location.href = '@Url.Action("CheckoutOrder", "Home")' + '?email=' + encodeURIComponent(userEmail);
+                    }
+                }, 2000); // Delay for success message
+            }
+        });
+    </script>
+</body>
+</html>

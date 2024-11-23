@@ -1,0 +1,151 @@
+﻿@model MuggedShop.Models.User
+
+@{
+    ViewData["Title"] = "Register User";
+    ViewBag.HideNav = true;
+    ViewBag.HideFooter = true;
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding-top: 50px;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, #f88f5f, #fed59c, #d753a7, #e98dcc);
+        padding: 0 10px;
+    }
+
+    .register_form {
+        width: 100%;
+        max-width: 435px;
+        background: #e6f0ff;
+        border-radius: 6px;
+        padding: 41px 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        margin: 0 auto;
+    }
+
+        .register_form h3 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .register_form .input_box {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+            .register_form .input_box label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 8px;
+            }
+
+            .register_form .input_box input {
+                width: 100%;
+                height: 57px;
+                border: 1px solid #DADAF2;
+                border-radius: 5px;
+                outline: none;
+                background: #F8F8FB;
+                font-size: 17px;
+                padding: 0px 20px;
+                transition: 0.2s ease;
+            }
+
+                .register_form .input_box input:focus {
+                    border-color: #626cd6;
+                }
+
+        .register_form .btn {
+            width: 100%;
+            height: 56px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background: #004aad;
+            color: #e6f0ff;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 28px;
+            transition: 0.3s ease;
+        }
+
+            .register_form .btn:hover {
+                background: #08075F;
+            }
+
+    .text-danger {
+        color: red;
+    }
+
+    .alert {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<br />
+<br />
+
+<div class="register_form">
+    <h3>Register User</h3>
+
+    <!-- Display error messages if they exist -->
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="RegisterUser" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="input_box">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" required />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="input_box">
+            <label asp-for="FullName" class="control-label"></label>
+            <input asp-for="FullName" class="form-control" required />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="input_box">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" required />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="input_box">
+            <label asp-for="PasswordHash" class="control-label"></label>
+            <input asp-for="PasswordHash" type="password" class="form-control" required />
+            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'">REGISTER</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

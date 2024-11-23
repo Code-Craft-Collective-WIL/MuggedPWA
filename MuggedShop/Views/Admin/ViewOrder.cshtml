@@ -1,0 +1,127 @@
+﻿@model MuggedShop.ModelViews.OrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Order Details - Order ID: @Model.OrderId</h1>
+
+<p style="text-align: center;">
+    <strong>Order Date:</strong> @(Model.CreatedAt?.ToString("MM/dd/yyyy") ?? "N/A")
+</p>
+<p style="text-align: center;">
+    <strong>Processed Date:</strong> @(Model.ProcessedDate?.ToString("MM/dd/yyyy") ?? "N/A")
+</p>
+
+<p style="text-align: center;"><strong>User Email:</strong> @Model.UserEmail</p>
+
+<h3 style="text-align: center;">Items Ordered</h3>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.OrderItems != null && Model.OrderItems.Any())
+            {
+                foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price.ToString("C")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center">No items found for this order.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a asp-action="OrderHistory" class="btn btn-secondary">Back to Order History</a>
+</div>
+
+<style>
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin: 20px 0;
+    }
+
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #e6f0ff;
+    }
+
+    th {
+        background-color: #f88f5f;
+        color: black;
+    }
+
+    .btn-secondary {
+        padding: 10px 15px;
+        background-color: #6c757d; /* Grey color */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Darker grey on hover */
+            color: white;
+        }
+
+    @@media screen and (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+            width: 100%;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #ddd;
+        }
+    }
+</style>

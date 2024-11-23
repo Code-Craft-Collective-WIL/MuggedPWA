@@ -1,0 +1,55 @@
+﻿@model MuggedShop.Models.Category
+
+@{
+    ViewData["Title"] = "Add Category";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Add Category</h1>
+
+<div class="custom-form">
+    <!-- Display the error message from ViewBag if it exists -->
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    <form asp-action="AddCategory" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="CategoryName" class="control-label"></label>
+            <input asp-for="CategoryName" class="form-control" />
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <input type="submit" value="ADD CATEGORY" class="btn btn-primary" style="color: white; background-color: #d753a7; font-weight:bold; border: none; padding: 10px 20px; cursor: pointer;" onmouseover="this.style.backgroundColor='#ef674d'" onmouseout="this.style.backgroundColor='#d753a7'" />
+        </div>
+
+        <br />
+
+        <div>
+            <a asp-action="ViewCategory" class="btn btn-secondary" style="font-weight:bold;">Back to Categories</a>
+        </div>
+
+        <br /><br /><br /><br />
+
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,168 @@
+﻿@model List<MuggedShop.ModelViews.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var availableProducts = ViewBag.AvailableProducts as List<MuggedShop.ModelViews.ProductViewModel>;
+}
+<style>
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .product-section {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .product-card {
+        flex: 1 1 calc(50% - 20px);
+        padding: 20px;
+        border-radius: 8px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        color: black;
+        background-color: white;
+        border: 5px solid transparent;
+        background-clip: padding-box;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .left-card::after,
+    .right-card::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 8px;
+        background: linear-gradient(to right, #f88f5f, #fed59c, #d753a7, #e98dcc);
+        z-index: -1;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .product-name {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+    }
+
+    .slideshow-container {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .mySlides {
+        display: none;
+        text-align: center;
+    }
+
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @@keyframes fade {
+        from { opacity: 0.4; }
+        to { opacity: 1; }
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
+    }
+
+    .btn {
+        color: white;
+        background-color: #d753a7;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #ef674d;
+    }
+
+    @@media (max-width: 768px) {
+        .product-card {
+            flex: 1 1 100%;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1 style="text-align: center;">Home</h1>
+    <p style="text-align: center;">
+        Welcome to Mugged, where you can find a wide selection of customizable products! Whether you're looking for the perfect gift or a unique item for yourself, we have something special for everyone. Explore our custom mugs and personalized gifts to create unforgettable memories.
+    </p>
+    
+    <div class="product-section">
+        <div class="product-card left-card">
+            <h1>Custom Mugs</h1>
+            <p>Create a truly unique custom mug by uploading your favorite images and adding personalized text. Our design tools allow you to craft a one-of-a-kind mug, perfect for gifting or adding a special touch to your collection. Once designed, simply add it to your cart and bring your ideas to life with Mugged!</p>
+            <img src="~/Images/Custom_Mug.jpg" alt="Custom Mug" class="product-image">
+            <div class="button-container">
+                <a class="btn" href="@Url.Action("CustomizeMug", "Home")">ORDER NOW!</a>
+            </div>
+        </div>
+
+        <div class="product-card right-card">
+            <h1>Personalised Gifts</h1>
+            <p>Find the perfect personalized gifts for every occasion. Browse a range of unique items, each customizable with photos, names, and special messages to make them truly memorable. Whether it's for a birthday, holiday, or just because, our selection has something for everyone.</p>
+            <div class="slideshow-container">
+                @if (availableProducts != null && availableProducts.Count > 0)
+                {
+                    int index = 0;
+                    foreach (var product in availableProducts)
+                    {
+                        <div class="mySlides fade" style="display:@(index == 0 ? "block" : "none")">
+                            <img src="@Url.Content(product.ImageURL)" alt="@product.ProductName" class="product-image">
+                            <h3 class="product-name">@product.ProductName</h3>
+                        </div>
+                        index++;
+                    }
+                }
+            </div>
+
+            <div class="button-container">
+                <a class="btn" href="@Url.Action("Shop", "Home")">ORDER NOW!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let slides = document.getElementsByClassName("mySlides");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000);
+    }
+</script>
