@@ -1,157 +1,142 @@
-# Mugged - Progressive Web App 🎁☕️
+# Mugged - Progressive Web App 🎁☕️  
 
 ![Mugged Logo](./assets/logo.png)  
-*Customizable Gift Shop - Personalized Mugs & More*
-
-**Mugged** is a customizable gift shop that specializes in selling personalized mugs and other gift items. This project is a **Progressive Web App (PWA)** developed as part of a Work Integrated Learning (WIL) project for a gift shop. The app is designed to provide users with a seamless and engaging shopping experience, allowing them to customize products with ease.
+*Customizable Gift Shop - Personalized Mugs & More*  
 
 ---
 
-## Table of Contents 📚
+## About the Project 📖  
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [CI/CD & DevOps](#cicd-devops)
-- [Testing](#testing)
-- [Contributors](#contributors)
-- [License](#license)
+**Mugged** is a customizable gift shop specializing in personalized mugs and other gift items. This **Progressive Web App (PWA)** was developed as the **final year project** for the **Work Integrated Learning (WIL)** module, a key component of the Diploma in Information Technology in Software Development.  
 
----
+The **WIL module** is designed to integrate theoretical knowledge with real-world application, emphasizing teamwork, project management, and professional development. The module required us to complete a full software development lifecycle (SDLC), including:  
+1. **Project Planning**  
+2. **Requirements Analysis**  
+3. **System Design**  
+4. **Development**  
+5. **Testing**  
+6. **Deployment**  
 
-## Project Overview 💻
-
-This **PWA** is built using **ASP.NET MVC** for the backend and **HTML, CSS, and JavaScript** for the frontend, ensuring an interactive and responsive design. The application makes full use of **Azure DevOps** for version control, project management, and CI/CD pipelines, ensuring a smooth development process and continuous integration.  
-
-The app allows users to browse and customize mugs, adding personalized text or images. Features include a product gallery, customizable options, and a secure checkout process.
+This project allowed us to gain hands-on experience with industry-standard tools and methodologies, preparing us for professional roles in software development.  
 
 ---
 
-## Features ✨
+## Project Overview 💻  
 
-- **User-Friendly Interface**: Intuitive navigation for an easy shopping experience.
-- **Product Customization**: Users can personalize mugs with text and images.
-- **Responsive Design**: Optimized for all screen sizes (mobile, tablet, desktop).
-- **Offline Functionality**: Available as a PWA, allowing offline use.
-- **Secure Checkout**: Integration with payment gateways for a smooth checkout process.
-- **Product Gallery**: Displays customizable mugs and other gift items.
+**Mugged PWA** is a dynamic application developed using **HTML**, **CSS**, **JavaScript**, and **ASP.NET MVC**. It features a robust backend powered by an **Azure SQL Database** and integrates **Azure DevOps** for efficient project management, testing, and deployment.  
 
----
+The application enables users to personalize mugs with text and images, browse products in a visually appealing gallery, and complete purchases through a secure and responsive interface.  
 
-## Technologies Used 🔧
-
-- **Frontend**:
-  - HTML5
-  - CSS3 (Bootstrap & custom styles)
-  - JavaScript (ES6+)
-  - Service Workers for PWA functionality
-
-- **Backend**:
-  - C#
-  - ASP.NET MVC
-  - Azure SQL Database
-
-- **DevOps**:
-  - Azure DevOps (CI/CD Pipelines)
-  - Azure Boards for task tracking
-  - Git for version control
-
-- **Testing**:
-  - NUnit for backend testing
-  - Azure Test Plans for automated tests
+Key phases of the project:  
+1. **Project Plan**: Defined goals, milestones, and deliverables, including risk management strategies and technical feasibility.  
+2. **Requirement Analysis**: Gathered and documented functional and non-functional requirements, use case diagrams, and logical system models.  
+3. **System Design**: Created database schemas, architectural diagrams, and UI mockups using Figma and Draw.io.  
+4. **Development**: Implemented both frontend and backend functionality using Visual Studio 2022, adhering to coding standards and agile practices.  
+5. **Testing**: Conducted unit testing, integration testing, and user acceptance testing, leveraging Azure Test Plans and NUnit.  
+6. **Deployment**: Set up CI/CD pipelines for seamless deployment and maintenance using Azure Pipelines.
 
 ---
 
-## Installation ⚙️
+## Features ✨  
 
-To run the project locally, follow these steps:
-
-### Prerequisites:
-
-- **Visual Studio 2022** or later
-- **.NET Core SDK**
-- **Azure DevOps account** (for CI/CD and project management)
-- **Azure SQL Database** (for local database testing)
-
-### Steps to Run the Project Locally:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/mugged.git
-
-   # Mugged - A Personalized Mug and Gift Shop
-
-2. Open the Project in Visual Studio 2022
-- Navigate to **File > Open > Project/Solution**.
-- Select the `Mugged.sln` solution file.
-
-3. Restore the Project Dependencies
-- Right-click on the solution in the Solution Explorer and select **Restore NuGet Packages**.
-
-4. Configure the Database Connection
-- Ensure that your Azure SQL Database connection string is correctly set in the `appsettings.json` file.
-
-5. Build and Run the Project
-- Click **Run** in Visual Studio or press **F5** to start the application.
+- **Customizable Products**: Users can personalize mugs with text and images.  
+- **Responsive Design**: Accessible on mobile, tablet, and desktop devices.  
+- **Offline Functionality**: Built as a PWA for uninterrupted access.  
+- **Secure Checkout**: Integrates with secure payment gateways.  
+- **Product Gallery**: Displays available gift items with customization options.  
+- **User-Friendly Interface**: Easy-to-navigate design for seamless interaction.  
 
 ---
 
-## Usage 🛍️
+## Technologies Used 🔧  
 
-Once the app is running, you can:
+### **Frontend**  
+- HTML5, CSS3, JavaScript (ES6+)  
+- Bootstrap for responsive design  
+- Service Workers for PWA functionality  
 
-- Browse available customizable products.
-- Select a product to personalize (add text/images).
-- Add the customized product to the cart.
-- Proceed to the checkout page and complete the purchase.
+### **Backend**  
+- ASP.NET MVC Framework  
+- C# for server-side logic  
+- Azure SQL Database for data management  
 
-The app is also available as a **PWA (Progressive Web App)**. Install it on your device for offline usage and access it directly from your home screen.
+### **DevOps**  
+- Azure DevOps: CI/CD Pipelines, Azure Boards  
+- Git for version control (hosted on GitHub)  
 
----
+### **Design & Prototyping**  
+- Figma: UI/UX Mockups  
+- Draw.io: System diagrams and architectural designs  
 
-## CI/CD & DevOps 🚀
-
-The development of this project integrates **Azure DevOps** for:
-
-- **CI/CD Pipelines**: Automated testing and deployment processes.
-- **Azure Boards**: Task management and sprint planning.
-- **Version Control**: Git repositories for collaboration and code management.
-
-All code is pushed to the main branch via pull requests, and every commit triggers the CI/CD pipeline to ensure automatic deployment to Azure.
-
----
-
-## Testing 🧪
-
-Testing is a key part of this project. The following testing strategies were used:
-
-- **Unit Testing**: Back-end logic tested using **NUnit**.
-- **Automated Tests**: Managed and executed via **Azure Test Plans**.
-- **Manual Testing**: Front-end features and UI tested across various devices and browsers.
+### **Testing**  
+- NUnit: Unit testing for backend logic  
+- Azure Test Plans: Automated and manual testing  
 
 ---
 
-## Contributors 👥
+## Project Lifecycle 🔄  
 
-This project was developed by the **Code Craft Collective** team:
+### 1. Project Plan  
+We began with a comprehensive project plan that defined:  
+- Goals and objectives  
+- Milestones and deliverables  
+- Risk analysis and mitigation strategies  
+- Feasibility studies (technical, operational, and economic)  
+- Team roles and responsibilities  
 
-- **Member 1**: Project Manager & Backend Developer
-- **Member 2**: Software Developer Lead & Frontend Developer
-- **Member 3**: Business Analyst & Software Designer
-- **Member 4**: Database Administrator & DevOps Engineer
-- **Member 5**: Frontend Developer & QA Tester
-- **Member 6**: Frontend Developer
-- **Member 7**: Backend Developer & QA Tester
-
----
-
-## License 📜
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+The **Gantt charts** and **PERT diagrams** created using MS Project guided our timelines and critical paths.
 
 ---
 
-🔗 Want to see the project in action? Visit our **[live demo on Azure](#)** ✨
+## Roles and Contributors 👥  
 
+**Team Name**: Code Craft Collective  
+
+| Name             | Role                                | GitHub Profile                       |  
+|------------------|------------------------------------|--------------------------------------|  
+| Member 1         | Project Manager & Backend Developer | [GitHub Profile](#)                  |  
+| Member 2         | Software Developer Lead & Frontend Developer | [GitHub Profile](#)          |  
+| Member 3         | Business Analyst & Software Designer | [GitHub Profile](#)                |  
+| Member 4         | Database Administrator & DevOps Engineer | [GitHub Profile](#)              |  
+| Member 5         | Frontend Developer & QA Tester     | [GitHub Profile](#)                  |  
+| Member 6         | Frontend Developer                 | [GitHub Profile](#)                  |  
+| Member 7         | Backend Developer & QA Tester      | [GitHub Profile](#)                  |  
+
+---
+
+## Skills Gained 🚀  
+
+This project allowed us to develop the following skills:  
+
+- **Agile Project Management**  
+- **Full-Stack Web Development**  
+- **DevOps and CI/CD Pipeline Creation**  
+- **Collaborative Development** using Git and Azure Boards  
+- **Effective Communication and Teamwork**  
+
+---
+
+## Acknowledgment 🙏  
+
+We would like to express our deepest gratitude to everyone who contributed to the successful completion of this project:  
+
+- **Varsity College Nelson Mandela Bay** for providing us with a structured and practical **Work Integrated Learning (WIL)** module, which allowed us to apply theoretical knowledge to real-world challenges.  
+- **Courteney Young** and **Reece Wanvig**, our lecturers, for their invaluable guidance, constructive feedback, and continuous support throughout this project.  
+- **Emmanual Jaftha**, our mentor, for his expert advice, encouragement, and technical insights during key phases of the project.  
+- **Mugged** for giving us the opportunity to develop a Progressive Web App tailored to their business needs and for their collaborative feedback.  
+- **Azure** and **GitHub Platforms** for their comprehensive tools and services that facilitated project management, development, and deployment.  
+- **Team Code Craft Collective**, for their dedication, teamwork, and technical expertise in ensuring the successful delivery of this project.  
+
+This project was an invaluable learning experience that not only strengthened our technical skills but also prepared us for future professional challenges.  
+
+---
+
+## License 📜  
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.  
+
+---
+
+🔗 **Live Demo**: [View the project on Azure](#)  
+
+---
