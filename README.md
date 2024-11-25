@@ -1,7 +1,9 @@
 # Mugged - Progressive Web App 🎁☕️  
 
-![Mugged Logo](./assets/logo.png)  
-*Customizable Gift Shop - Personalized Mugs & More*  
+<div align="center">
+  <img src="./mugged-logo.jpg" alt="Mugged Logo" width="300px" style="border-radius: 50%;">
+  <p><em>Customizable Gift Shop - Personalized Mugs & More</em></p>
+</div>
 
 ---
 
