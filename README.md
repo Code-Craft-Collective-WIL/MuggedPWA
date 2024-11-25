@@ -96,15 +96,15 @@ The **Gantt charts** and **PERT diagrams** created using MS Project guided our t
 
 **Team Name**: Code Craft Collective  
 
-| Name             | Role                                | GitHub Profile                       |  
-|------------------|------------------------------------|--------------------------------------|  
-| Member 1         | Project Manager & Backend Developer | [GitHub Profile](#)                  |  
-| Member 2         | Software Developer Lead & Frontend Developer | [GitHub Profile](#)          |  
-| Member 3         | Business Analyst & Software Designer | [GitHub Profile](#)                |  
-| Member 4         | Database Administrator & DevOps Engineer | [GitHub Profile](#)              |  
-| Member 5         | Frontend Developer & QA Tester     | [GitHub Profile](#)                  |  
-| Member 6         | Frontend Developer                 | [GitHub Profile](#)                  |  
-| Member 7         | Backend Developer & QA Tester      | [GitHub Profile](#)                  |  
+| Name                         | Role                                   | GitHub Profile                                      |  
+|------------------------------|---------------------------------------|---------------------------------------------------|  
+| Moses J. Gallant             | Project Manager/Team Leader           | [GitHub Profile](https://github.com/MainG10)      |  
+| Justin Plaatjies             | Business Analyst/Software Designer/Secretary | [GitHub Profile](https://github.com/Justinsimplyis) |  
+| Sibusiso Ngqangwani          | Database Administrator                | [GitHub Profile](https://github.com/ST10118588)   |  
+| Babalo Skosana               | DevOps Engineer                       | [GitHub Profile](https://github.com/ShadyX-Gottwald) |  
+| Nour El Deen M. Hassan       | Frontend Developer                    | [GitHub Profile](https://github.com/NoureldeenHassan) |  
+| Franklyn H. Pedro            | Backend Developer                     | [GitHub Profile](https://github.com/FranklynPedro) |  
+| Mulisa Mabasa                | Testing Lead/Quality Assurance Engineer | [GitHub Profile](https://github.com/Mul)          |  
 
 ---
 
