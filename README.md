@@ -7,8 +7,6 @@
   <p><em>Customizable Gift Shop - Personalized Mugs & More</em></p>
 </div>
 
----
-
 ## About the Project 📖  
 
 **Mugged** is a customizable gift shop specializing in personalized mugs and other gift items. This **Progressive Web App (PWA)** was developed as the **final year project** for the **Work Integrated Learning (WIL)** module, a key component of the Diploma in Information Technology in Software Development.  
@@ -22,8 +20,6 @@ The **WIL module** is designed to integrate theoretical knowledge with real-worl
 6. **Deployment**  
 
 This project allowed us to gain hands-on experience with industry-standard tools and methodologies, preparing us for professional roles in software development.  
-
----
 
 ## Project Overview 💻  
 
@@ -39,8 +35,6 @@ Key phases of the project:
 5. **Testing**: Conducted unit testing, integration testing, and user acceptance testing, leveraging Azure Test Plans and NUnit.  
 6. **Deployment**: Set up CI/CD pipelines for seamless deployment and maintenance using Azure Pipelines.
 
----
-
 ## Features ✨  
 
 - **Customizable Products**: Users can personalize mugs with text and images.  
@@ -49,8 +43,6 @@ Key phases of the project:
 - **Secure Checkout**: Integrates with secure payment gateways.  
 - **Product Gallery**: Displays available gift items with customization options.  
 - **User-Friendly Interface**: Easy-to-navigate design for seamless interaction.  
-
----
 
 ## Technologies Used 🔧  
 
@@ -76,8 +68,6 @@ Key phases of the project:
 - NUnit: Unit testing for backend logic  
 - Azure Test Plans: Automated and manual testing  
 
----
-
 ## Project Lifecycle 🔄  
 
 ### 1. Project Plan  
@@ -90,7 +80,48 @@ We began with a comprehensive project plan that defined:
 
 The **Gantt charts** and **PERT diagrams** created using MS Project guided our timelines and critical paths.
 
----
+### 2. Requirements Analysis  
+The next phase involved gathering and analyzing the functional and non-functional requirements:  
+- **Use Case Diagrams**: Defined system interactions and actors.  
+- **Logical System Model**: Outlined inputs, outputs, processes, and relationships.  
+- **Functional Specifications**: Documented all system capabilities and constraints.  
+
+### 3. System Design  
+The system design phase included:  
+- **Database Design**: Normalized schema in 3NF, ensuring referential integrity.  
+- **Architectural Design**: High-level and low-level diagrams showcasing the system’s architecture (three-tier design).  
+- **UI/UX Mockups**: Created in Figma for a consistent and user-centric interface.  
+- **ERD Diagrams**: Defined entity relationships and data structures.  
+
+### 4. Development  
+Development was divided into **frontend** and **backend** components:  
+- Frontend: Built using **HTML**, **CSS**, and **JavaScript** with responsive design principles.  
+- Backend: Developed in **ASP.NET MVC** with C# to handle server-side logic and APIs.  
+
+Version control was maintained via **GitHub**, with pull requests and branch protection rules ensuring code quality.
+
+### 5. Testing  
+A rigorous testing process ensured the application met all requirements:  
+- **Unit Testing**: NUnit for backend methods.  
+- **Integration Testing**: Verified API and database interactions.  
+- **Manual Testing**: Checked UI responsiveness and user flows.  
+- **Automated Testing**: Conducted using Azure Test Plans.  
+
+### 6. Deployment  
+The project was deployed using **Azure DevOps**:  
+- **CI/CD Pipelines**: Automated builds and deployments for consistent updates.  
+- **Hosting**: Application hosted on Azure App Service for scalability and reliability.  
+- **Monitoring**: Regular monitoring to ensure performance and uptime.  
+
+## Skills Gained 🚀  
+
+This project allowed us to develop the following skills:  
+
+- **Agile Project Management**  
+- **Full-Stack Web Development**  
+- **DevOps and CI/CD Pipeline Creation**  
+- **Collaborative Development** using Git and Azure Boards  
+- **Effective Communication and Teamwork**  
 
 ## Roles and Contributors 👥  
 
@@ -106,20 +137,6 @@ The **Gantt charts** and **PERT diagrams** created using MS Project guided our t
 | Franklyn H. Pedro            | Backend Developer                     | [GitHub Profile](https://github.com/FranklynPedro) |  
 | Mulisa Mabasa                | Testing Lead/Quality Assurance Engineer | [GitHub Profile](https://github.com/Mul)          |  
 
----
-
-## Skills Gained 🚀  
-
-This project allowed us to develop the following skills:  
-
-- **Agile Project Management**  
-- **Full-Stack Web Development**  
-- **DevOps and CI/CD Pipeline Creation**  
-- **Collaborative Development** using Git and Azure Boards  
-- **Effective Communication and Teamwork**  
-
----
-
 ## Acknowledgment 🙏  
 
 We would like to express our deepest gratitude to everyone who contributed to the successful completion of this project:  
@@ -133,14 +150,10 @@ We would like to express our deepest gratitude to everyone who contributed to th
 
 This project was an invaluable learning experience that not only strengthened our technical skills but also prepared us for future professional challenges.  
 
----
-
 ## License 📜  
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.  
 
----
-
 🔗 **Live Demo**: [View the project on Azure](#)  
 
----
+
