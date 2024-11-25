@@ -1,4 +1,6 @@
-# Mugged - Progressive Web App 🎁☕️  
+<div align="center">
+  <h1>Mugged - Progressive Web App</h1>
+</div>
 
 <div align="center">
   <img src="./mugged-logo.jpg" alt="Mugged Logo" width="300px" style="border-radius: 50%;">
