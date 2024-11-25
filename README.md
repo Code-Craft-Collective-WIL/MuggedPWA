@@ -154,6 +154,6 @@ This project was an invaluable learning experience that not only strengthened ou
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.  
 
-🔗 **Live Demo**: [View the project on Azure](#)  
+🔗 **Live Demo**: [View the project on Azure](https://muggedshop20241125211528.azurewebsites.net/) 
 
 
